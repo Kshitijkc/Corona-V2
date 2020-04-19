@@ -1,10 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
 
-<StackPane fx:id="leftDrawerPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="425.0" prefWidth="100.0" stylesheets="@../css/drawer-pane.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kshitijkc.controllers.LeftDrawerController">
+<VBox fx:id="leftDrawerPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="425.0" prefWidth="100.0" stylesheets="@../css/drawer-pane.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kshitijkc.controllers.LeftDrawerController">
    <children>
-      <JFXButton text="Hello" textFill="#00ffea" />
+      <StackPane>
+         <VBox.margin>
+            <Insets top="20.0" />
+         </VBox.margin>
+         <children>
+            <Circle fx:id="circularImage" fill="DODGERBLUE" radius="40.0" stroke="#c6c6c6" strokeType="INSIDE" strokeWidth="3.0" />
+         </children>
+      </StackPane>
+      <StackPane prefHeight="30.0">
+         <children>
+            <Line disable="true" endX="80.0" fill="BLACK" mouseTransparent="true" startX="20.0" stroke="#686868" strokeLineCap="ROUND" StackPane.alignment="CENTER" />
+         </children>
+      </StackPane>
    </children>
-</StackPane>
+</VBox>

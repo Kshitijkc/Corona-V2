@@ -10,6 +10,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
 
 import java.io.IOException;
@@ -35,7 +36,7 @@ public class MainController implements Initializable {
 
         // Left Drawer Pane
         leftDrawer = new JFXDrawer();
-        StackPane leftDrawerPane = null;
+        VBox leftDrawerPane = null;
         try {
             leftDrawerPane = FXMLLoader.load(getClass().getResource("/fxml/LeftDrawer.fxml"));
         } catch (IOException e) {

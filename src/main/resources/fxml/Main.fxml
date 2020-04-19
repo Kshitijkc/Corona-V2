@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXDrawersStack?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane fx:id="indicator" minHeight="-Infinity" minWidth="-Infinity" onMouseEntered="#showMenuItem" onMouseExited="#hideMenuItem" opacity="0.9" prefHeight="425.0" prefWidth="250.0" style="-fx-background-color: #0000FF; -fx-background-radius: 5; -fx-border-radius: 5;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kshitijkc.controllers.MainController">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="100.0" prefWidth="100.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="4.0" minHeight="4.0" prefHeight="30.0" />
+   </rowConstraints>
+   <padding>
+      <Insets right="1.0" top="1.0" />
+   </padding>
+   <children>
+      <JFXDrawersStack fx:id="drawersStack" stylesheets="@../css/main.css">
+         <GridPane.margin>
+            <Insets left="1.0" />
+         </GridPane.margin>
+         <padding>
+            <Insets bottom="3.0" top="3.0" />
+         </padding></JFXDrawersStack>
+   </children>
+</GridPane>

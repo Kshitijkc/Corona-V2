@@ -1,0 +1,7 @@
+#leftDrawerPane {
+    -fx-background-color : linear-gradient(to bottom, #000000, #101010 5%, #101010 95%, #000000);
+}
+
+#topDrawerPane {
+    -fx-background-color : #000000;
+}

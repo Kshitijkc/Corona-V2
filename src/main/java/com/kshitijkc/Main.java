@@ -1,0 +1,89 @@
+package com.kshitijkc;
+
+import javafx.application.Application;
+import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.Cursor;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
+import javafx.stage.Screen;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
+public class Main extends Application {
+
+    private double xOffset = 0;
+    private double yOffset = 0;
+    // Width 250
+    // Height 425
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/Main.fxml"));
+        Scene scene = new Scene(root);
+        scene.setFill(Color.TRANSPARENT);
+
+        Stage stage = setStage(primaryStage);
+
+        setEvents(root, stage, scene);
+
+        stage.setScene(scene);
+
+        stage.show();
+    }
+
+    private Stage setStage(Stage primaryStage) {
+        Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
+        //set Stage boundaries to visible bounds of the main screen
+        Stage stage = new Stage();
+//        stage.initOwner(primaryStage);
+        stage.setX(primaryScreenBounds.getWidth() * (1.0 - (250.0 / 1366.0) - (20.0 / 1366.0))); // 1 - 0.18301610541 - 0.01464128843 && 0.01464128843 = 20 / 1366
+        stage.setY((primaryScreenBounds.getHeight() * (1.0 - (425.0 / 768.0)))/2.0); // (1 - 0.55338541666) / 2 && set it as the middle of the screen
+//        stage.setWidth(primaryScreenBounds.getWidth() * (250.0 / 1366.0)); // 0.18301610541 = 250 / 1366
+//        stage.setHeight(primaryScreenBounds.getHeight() * (425.0 / 768.0)); // 0.55338541666 = 425 / 768
+        stage.setResizable(false);
+        stage.setAlwaysOnTop(true);
+        stage.initStyle(StageStyle.TRANSPARENT);
+        stage.setTitle("Corona");
+        return stage;
+    }
+
+    private void setEvents(Parent root, final Stage stage, final Scene scene) {
+        root.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                xOffset = event.getSceneX();
+                yOffset = event.getSceneY();
+                scene.setCursor(Cursor.CLOSED_HAND);
+            }
+        });
+        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                stage.setX(event.getScreenX() - xOffset);
+                stage.setY(event.getScreenY() - yOffset);
+                scene.setCursor(Cursor.CLOSED_HAND);
+            }
+        });
+        root.setOnMouseReleased(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                scene.setCursor(Cursor.HAND);
+            }
+        });
+        root.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                scene.setCursor(Cursor.HAND);
+            }
+        });
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+
+}

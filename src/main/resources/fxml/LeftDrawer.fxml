@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
@@ -8,18 +13,54 @@
 
 <VBox fx:id="leftDrawerPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="425.0" prefWidth="100.0" stylesheets="@../css/drawer-pane.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kshitijkc.controllers.LeftDrawerController">
    <children>
-      <StackPane>
+      <GridPane>
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="30.0" prefHeight="270.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <StackPane>
+               <children>
+                  <Circle fx:id="circularImage" fill="DODGERBLUE" radius="40.0" stroke="#c6c6c6" strokeType="INSIDE" strokeWidth="3.0" />
+               </children>
+            </StackPane>
+            <StackPane prefHeight="30.0" GridPane.rowIndex="1">
+               <children>
+                  <Line disable="true" endX="80.0" fill="BLACK" mouseTransparent="true" startX="20.0" stroke="#686868" strokeLineCap="ROUND" StackPane.alignment="CENTER" />
+               </children>
+            </StackPane>
+            <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" style="-fx-background: transparent; -fx-background-color: transparent;" vbarPolicy="NEVER" GridPane.rowIndex="2">
+               <content>
+                  <VBox maxHeight="1.7976931348623157E308" prefHeight="250.0" prefWidth="100.0">
+                     <padding>
+                        <Insets left="3.0" right="3.0" />
+                     </padding>
+                     <children>
+                        <JFXButton maxWidth="1.7976931348623157E308" text="Button 1" textFill="#00ffff" />
+                        <JFXButton maxWidth="1.7976931348623157E308" text="Button 2" textFill="#00ffff" />
+                        <JFXButton maxWidth="1.7976931348623157E308" text="Button 3" textFill="#00ffff" />
+                        <JFXButton maxWidth="1.7976931348623157E308" text="Button 4" textFill="#00ffff" />
+                        <JFXButton maxWidth="1.7976931348623157E308" text="Button 5" textFill="#00ffff" />
+                        <JFXButton maxWidth="1.7976931348623157E308" text="Button 1" textFill="#00ffff" />
+                        <JFXButton maxWidth="1.7976931348623157E308" text="Button 1" textFill="#00ffff" />
+                        <JFXButton maxWidth="1.7976931348623157E308" text="Button 1" textFill="#00ffff" />
+                        <JFXButton maxWidth="1.7976931348623157E308" text="Button 1" textFill="#00ffff" />
+                        <JFXButton maxWidth="1.7976931348623157E308" text="Button 1" textFill="#00ffff" />
+                        <JFXButton maxWidth="1.7976931348623157E308" text="Button 1" textFill="#00ffff" />
+                        <JFXButton maxWidth="1.7976931348623157E308" text="Button 1" textFill="#00ffff" />
+                        <JFXButton maxWidth="1.7976931348623157E308" text="Button 1" textFill="#00ffff" />
+                     </children>
+                  </VBox>
+               </content>
+            </ScrollPane>
+         </children>
          <VBox.margin>
             <Insets top="20.0" />
          </VBox.margin>
-         <children>
-            <Circle fx:id="circularImage" fill="DODGERBLUE" radius="40.0" stroke="#c6c6c6" strokeType="INSIDE" strokeWidth="3.0" />
-         </children>
-      </StackPane>
-      <StackPane prefHeight="30.0">
-         <children>
-            <Line disable="true" endX="80.0" fill="BLACK" mouseTransparent="true" startX="20.0" stroke="#686868" strokeLineCap="ROUND" StackPane.alignment="CENTER" />
-         </children>
-      </StackPane>
+      </GridPane>
    </children>
 </VBox>

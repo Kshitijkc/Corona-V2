@@ -1,15 +1,24 @@
 package com.kshitijkc.controllers;
 
 import com.kshitijkc.resources.TopDrawer;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.util.Duration;
 
 import java.net.URL;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
+
+import static com.kshitijkc.resources.DrawerStack.drawersStack;
+import static com.kshitijkc.resources.TopDrawer.topDrawer;
 
 public class TopDrawerController implements Initializable {
     public StackPane topDrawerPane;
@@ -24,6 +33,7 @@ public class TopDrawerController implements Initializable {
     }
 
     public void onMouseClicked(MouseEvent mouseEvent) {
+        drawersStack.toggle(topDrawer);
     }
 
     public void onMouseEntered(MouseEvent mouseEvent) {

@@ -22,6 +22,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        hideTaskbarIcon(primaryStage);
+
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/Main.fxml"));
         Scene scene = new Scene(root);
         scene.setFill(Color.TRANSPARENT);
@@ -35,11 +37,19 @@ public class Main extends Application {
         stage.show();
     }
 
+    private void hideTaskbarIcon(Stage primaryStage) {
+        primaryStage.initStyle(StageStyle.UTILITY);
+        primaryStage.setOpacity(0);
+        primaryStage.setHeight(0);
+        primaryStage.setWidth(0);
+        primaryStage.show();
+    }
+
     private Stage setStage(Stage primaryStage) {
         Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
         //set Stage boundaries to visible bounds of the main screen
         Stage stage = new Stage();
-//        stage.initOwner(primaryStage);
+        stage.initOwner(primaryStage);
         stage.setX(primaryScreenBounds.getWidth() * (1.0 - (250.0 / 1366.0) - (20.0 / 1366.0))); // 1 - 0.18301610541 - 0.01464128843 && 0.01464128843 = 20 / 1366
         stage.setY((primaryScreenBounds.getHeight() * (1.0 - (425.0 / 768.0)))/2.0); // (1 - 0.55338541666) / 2 && set it as the middle of the screen
 //        stage.setWidth(primaryScreenBounds.getWidth() * (250.0 / 1366.0)); // 0.18301610541 = 250 / 1366

@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
 
-
-<StackPane fx:id="topDrawerPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="425.0" prefWidth="250.0" stylesheets="@../css/drawer-pane.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane fx:id="topDrawerPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#onMouseClicked" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExit" prefHeight="425.0" prefWidth="250.0" stylesheets="@../css/drawer-pane.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kshitijkc.controllers.TopDrawerController">
    <children>
-      <JFXButton text="Time" textFill="WHITE" />
+      <AnchorPane fx:id="topDrawerSticker" prefHeight="100.0" prefWidth="50.0" stylesheets="@../css/drawer-pane.css">
+         <StackPane.margin>
+            <Insets bottom="150.0" left="30.0" right="90.0" />
+         </StackPane.margin>
+      </AnchorPane>
+      <Label fx:id="time" text="14:36" textFill="#c8c8c8">
+         <font>
+            <Font name="SansSerif Regular" size="41.0" />
+         </font>
+      </Label>
    </children>
 </StackPane>

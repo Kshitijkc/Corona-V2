@@ -6,6 +6,10 @@
     -fx-background-color : #000000;
 }
 
+#topDrawerSticker {
+    -fx-background-color : linear-gradient(to bottom, #000000, #101010 5%);
+}
+
 .separator *.line {
     -fx-border-style: solid;
     -fx-border-width: 0 0 1 0;

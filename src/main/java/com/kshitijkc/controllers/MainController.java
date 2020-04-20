@@ -72,9 +72,9 @@ public class MainController implements Initializable {
         topButton.addEventHandler(MOUSE_PRESSED, e -> drawersStack.toggle(topDrawer));
     }
 
-    public void showMenuItem(MouseEvent mouseEvent) {
+    public void OnMouseEntered(MouseEvent mouseEvent) {
     }
 
-    public void hideMenuItem(MouseEvent mouseEvent) {
+    public void OnMouseExited(MouseEvent mouseEvent) {
     }
 }

@@ -82,6 +82,9 @@ public class MainController implements Initializable {
     }
 
     public void setTopDrawerEvent(JFXDrawer topDrawer) {
+        topDrawer.setOnDrawerOpening(event -> {
+            time.setOpacity(0.0);
+        });
         topDrawer.setOnDrawerOpened(event -> {
             System.out.println("HAHAHA Clocking : ");
             clock.play();

@@ -2,14 +2,18 @@ package com.kshitijkc.resources;
 
 import com.jfoenix.controls.JFXDrawer;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.Label;
 
+import java.time.LocalDateTime;
+
+import static com.kshitijkc.resources.DrawerStack.drawersStack;
+
 public class TopDrawer {
     public static Thread timer = null;
-    public static long timeOut = 10000;
-    public static boolean isVisible = false;
+    public static long timeOut = 4000;
     public static Timeline clock = null;
 
     public static JFXDrawer topDrawer = null;
@@ -18,5 +22,47 @@ public class TopDrawer {
         public static StackPane topDrawerPane = null;
         public static AnchorPane topDrawerSticker = null;
         public static Label time = null;
+    }
+
+    public static void setTimer() {
+        TopDrawer.timer = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    System.out.println("Sleep Started : " + LocalDateTime.now().getSecond());
+                    Thread.sleep(TopDrawer.timeOut);
+                    System.out.println("Sleep Stopped : " + LocalDateTime.now().getSecond());
+                    System.out.println("Platform Started : " + LocalDateTime.now().getSecond());
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            System.out.println("Platform Run : " + LocalDateTime.now().getSecond());
+                            System.out.println(topDrawer.isOpened());
+                            drawersStack.toggle(topDrawer);
+                            System.out.println(topDrawer.isOpening());
+                        }
+                    });
+                } catch (InterruptedException e) {
+                    System.out.println("Timer Interrupted");
+                }
+            }
+        });
+        System.out.println("Thread Starting : " + LocalDateTime.now().getSecond());
+        TopDrawer.timer.start();
+        System.out.println("Thread Started : " + LocalDateTime.now().getSecond());
+    }
+
+    public static void stopTimer() {
+        if(TopDrawer.timer != null) {
+            if(TopDrawer.timer.isAlive()) {
+                System.out.println("Stopping Thread");
+                TopDrawer.timer.stop();
+                System.out.println("Thread Stopped");
+            }
+            if(topDrawer.isOpening())
+                topDrawer.close();
+            System.out.println("Setting Timer to null");
+            TopDrawer.timer = null;
+        }
     }
 }

@@ -1,20 +1,14 @@
 package com.kshitijkc.controllers;
 
 import com.kshitijkc.resources.TopDrawer;
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import javafx.util.Duration;
 
 import java.net.URL;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 import static com.kshitijkc.resources.DrawerStack.drawersStack;
@@ -40,7 +34,8 @@ public class TopDrawerController implements Initializable {
         time.setTextFill(Color.rgb(255, 255, 255));
     }
 
-    public void onMouseExit(MouseEvent mouseEvent) {
+    public void onMouseExited(MouseEvent mouseEvent) {
         time.setTextFill(Color.rgb(200, 200, 200));
+        System.out.println("Mouse Exited Drawer");
     }
 }

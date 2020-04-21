@@ -4,12 +4,12 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXDrawersStack;
 import com.kshitijkc.resources.DrawerStack;
+import com.kshitijkc.resources.Main;
 import com.kshitijkc.resources.TopDrawer;
 import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
@@ -34,13 +34,17 @@ import static com.kshitijkc.resources.TopDrawer.topDrawer;
 import static javafx.scene.input.MouseEvent.MOUSE_PRESSED;
 
 public class MainController implements Initializable {
-    public JFXDrawersStack drawersStack;
     public GridPane indicator;
+    public JFXDrawersStack drawersStack;
+
     private static final String LEFT = "LEFT";
     private static final String TOP = "TOP";
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        Main.indicator = indicator;
+        Main.drawersStack = drawersStack;
+
         FlowPane content = new FlowPane();
         JFXButton leftButton = new JFXButton(LEFT);
         content.getChildren().addAll(leftButton);
@@ -112,53 +116,26 @@ public class MainController implements Initializable {
             clock.stop();
             time.setVisible(false);
             System.out.println("StooooooPpPed");
+            if(Main.isMouseExited && TopDrawer.timer == null)
+                TopDrawer.setTimer();
         });
     }
 
     public void OnMouseEntered(MouseEvent mouseEvent) {
         System.out.println("Mouse Entered");
-        if(TopDrawer.timer != null) {
-            if(TopDrawer.timer.isAlive()) {
-                System.out.println("Stopping Thread");
-                TopDrawer.timer.stop();
-                System.out.println("Thread Stopped");
-            }
-            TopDrawer.timer = null;
-            TopDrawer.isVisible = false;
-        }
+        TopDrawer.stopTimer();
+        Main.isMouseExited = false;
     }
 
     public void OnMouseExited(MouseEvent mouseEvent) {
         System.out.println("Mouse Exited");
         if(TopDrawer.timer == null && topDrawer.isClosed()) {
-            TopDrawer.timer = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        System.out.println("Sleep Started : " + LocalDateTime.now().getSecond());
-                        Thread.sleep(TopDrawer.timeOut);
-                        System.out.println("Sleep Stopped : " + LocalDateTime.now().getSecond());
-                        System.out.println("Platform Started : " + LocalDateTime.now().getSecond());
-                        Platform.runLater(new Runnable() {
-                            @Override
-                            public void run() {
-                                System.out.println("Platform Run : " + LocalDateTime.now().getSecond());
-                                System.out.println(topDrawer.isOpened());
-                                drawersStack.toggle(topDrawer);
-                                System.out.println(topDrawer.isOpening());
-                            }
-                        });
-                    } catch (InterruptedException e) {
-                        System.out.println("Timer Interrupted");
-                    }
-                }
-            });
-            System.out.println("Thread Starting : " + LocalDateTime.now().getSecond());
-            TopDrawer.timer.start();
-            System.out.println("Thread Started : " + LocalDateTime.now().getSecond());
+            TopDrawer.setTimer();
         }
 
         if(leftDrawer.isOpening() || leftDrawer.isOpened())
             leftDrawer.close();
+
+        Main.isMouseExited = true;
     }
 }

@@ -111,9 +111,7 @@ public class MainController implements Initializable {
 
     public void OnMouseExited(MouseEvent mouseEvent) {
         System.out.println("Mouse Exited");
-        if(TopDrawer.timer == null && topDrawer.isClosed()) {
-            TopDrawer.setTimer();
-        }
+        TopDrawer.setTimer();
 
         if(leftDrawer.isOpening() || leftDrawer.isOpened())
             leftDrawer.close();

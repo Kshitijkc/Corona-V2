@@ -26,25 +26,27 @@ public class TopDrawer {
     public static FadeTransition fadeIn = null;
 
     public static void setTimer() {
-        TopDrawer.timer = new Thread(() -> {
-            try {
-                System.out.println("Sleep Started : " + LocalDateTime.now().getSecond());
-                Thread.sleep(TopDrawer.timeOut);
-                System.out.println("Sleep Stopped : " + LocalDateTime.now().getSecond());
-                System.out.println("Platform Started : " + LocalDateTime.now().getSecond());
-                Platform.runLater(() -> {
-                    System.out.println("Platform Run : " + LocalDateTime.now().getSecond());
-                    System.out.println(Elements.topDrawer.isOpened());
-                    drawersStack.toggle(Elements.topDrawer);
-                    System.out.println(Elements.topDrawer.isOpening());
-                });
-            } catch (InterruptedException e) {
-                System.out.println("Timer Interrupted");
-            }
-        });
-        System.out.println("Thread Starting : " + LocalDateTime.now().getSecond());
-        TopDrawer.timer.start();
-        System.out.println("Thread Started : " + LocalDateTime.now().getSecond());
+        if(TopDrawer.timer == null && Elements.topDrawer.isClosed()) {
+            TopDrawer.timer = new Thread(() -> {
+                try {
+                    System.out.println("Sleep Started : " + LocalDateTime.now().getSecond());
+                    Thread.sleep(TopDrawer.timeOut);
+                    System.out.println("Sleep Stopped : " + LocalDateTime.now().getSecond());
+                    System.out.println("Platform Started : " + LocalDateTime.now().getSecond());
+                    Platform.runLater(() -> {
+                        System.out.println("Platform Run : " + LocalDateTime.now().getSecond());
+                        System.out.println(Elements.topDrawer.isOpened());
+                        drawersStack.toggle(Elements.topDrawer);
+                        System.out.println(Elements.topDrawer.isOpening());
+                    });
+                } catch (InterruptedException e) {
+                    System.out.println("Timer Interrupted");
+                }
+            });
+            System.out.println("Thread Starting : " + LocalDateTime.now().getSecond());
+            TopDrawer.timer.start();
+            System.out.println("Thread Started : " + LocalDateTime.now().getSecond());
+        }
     }
 
     public static void resetTimer() {

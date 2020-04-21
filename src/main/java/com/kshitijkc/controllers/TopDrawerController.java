@@ -19,7 +19,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 import static com.kshitijkc.resources.Main.Elements.drawersStack;
-import static com.kshitijkc.resources.TopDrawer.*;
+import static com.kshitijkc.resources.TopDrawer.Elements.topDrawer;
+import static com.kshitijkc.resources.TopDrawer.clock;
+import static com.kshitijkc.resources.TopDrawer.fadeIn;
 
 public class TopDrawerController implements Initializable {
     public StackPane topDrawerPane;

@@ -19,9 +19,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import static com.kshitijkc.resources.TopDrawer.*;
 import static com.kshitijkc.resources.TopDrawer.Elements.time;
 import static com.kshitijkc.resources.LeftDrawer.leftDrawer;
+import static com.kshitijkc.resources.TopDrawer.Elements.topDrawer;
+import static com.kshitijkc.resources.TopDrawer.clock;
+import static com.kshitijkc.resources.TopDrawer.fadeIn;
 import static javafx.scene.input.MouseEvent.MOUSE_PRESSED;
 
 public class MainController implements Initializable {

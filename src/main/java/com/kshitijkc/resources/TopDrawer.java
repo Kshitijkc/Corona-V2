@@ -17,13 +17,13 @@ public class TopDrawer {
         public static StackPane topDrawerPane = null;
         public static AnchorPane topDrawerSticker = null;
         public static Label time = null;
+        public static JFXDrawer topDrawer = null;
     }
 
     public static Thread timer = null;
     public static long timeOut = 4000;
     public static Timeline clock = null;
     public static FadeTransition fadeIn = null;
-    public static JFXDrawer topDrawer = null;
 
     public static void setTimer() {
         TopDrawer.timer = new Thread(() -> {
@@ -34,9 +34,9 @@ public class TopDrawer {
                 System.out.println("Platform Started : " + LocalDateTime.now().getSecond());
                 Platform.runLater(() -> {
                     System.out.println("Platform Run : " + LocalDateTime.now().getSecond());
-                    System.out.println(topDrawer.isOpened());
-                    drawersStack.toggle(topDrawer);
-                    System.out.println(topDrawer.isOpening());
+                    System.out.println(Elements.topDrawer.isOpened());
+                    drawersStack.toggle(Elements.topDrawer);
+                    System.out.println(Elements.topDrawer.isOpening());
                 });
             } catch (InterruptedException e) {
                 System.out.println("Timer Interrupted");
@@ -54,8 +54,8 @@ public class TopDrawer {
                 TopDrawer.timer.stop();
                 System.out.println("Thread Stopped");
             }
-            if(topDrawer.isOpening())
-                topDrawer.close();
+            if(Elements.topDrawer.isOpening())
+                Elements.topDrawer.close();
             System.out.println("Setting Timer to null");
             TopDrawer.timer = null;
         }

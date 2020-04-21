@@ -1,6 +1,7 @@
 package com.kshitijkc.resources;
 
 import com.jfoenix.controls.JFXDrawer;
+import javafx.animation.FadeTransition;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.scene.layout.StackPane;
@@ -9,42 +10,36 @@ import javafx.scene.control.Label;
 
 import java.time.LocalDateTime;
 
-import static com.kshitijkc.resources.DrawerStack.drawersStack;
+import static com.kshitijkc.resources.Main.Elements.drawersStack;
 
 public class TopDrawer {
-    public static Thread timer = null;
-    public static long timeOut = 4000;
-    public static Timeline clock = null;
-
-    public static JFXDrawer topDrawer = null;
-
-    public static class Element {
+    public static class Elements {
         public static StackPane topDrawerPane = null;
         public static AnchorPane topDrawerSticker = null;
         public static Label time = null;
     }
 
+    public static Thread timer = null;
+    public static long timeOut = 4000;
+    public static Timeline clock = null;
+    public static FadeTransition fadeIn = null;
+    public static JFXDrawer topDrawer = null;
+
     public static void setTimer() {
-        TopDrawer.timer = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    System.out.println("Sleep Started : " + LocalDateTime.now().getSecond());
-                    Thread.sleep(TopDrawer.timeOut);
-                    System.out.println("Sleep Stopped : " + LocalDateTime.now().getSecond());
-                    System.out.println("Platform Started : " + LocalDateTime.now().getSecond());
-                    Platform.runLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            System.out.println("Platform Run : " + LocalDateTime.now().getSecond());
-                            System.out.println(topDrawer.isOpened());
-                            drawersStack.toggle(topDrawer);
-                            System.out.println(topDrawer.isOpening());
-                        }
-                    });
-                } catch (InterruptedException e) {
-                    System.out.println("Timer Interrupted");
-                }
+        TopDrawer.timer = new Thread(() -> {
+            try {
+                System.out.println("Sleep Started : " + LocalDateTime.now().getSecond());
+                Thread.sleep(TopDrawer.timeOut);
+                System.out.println("Sleep Stopped : " + LocalDateTime.now().getSecond());
+                System.out.println("Platform Started : " + LocalDateTime.now().getSecond());
+                Platform.runLater(() -> {
+                    System.out.println("Platform Run : " + LocalDateTime.now().getSecond());
+                    System.out.println(topDrawer.isOpened());
+                    drawersStack.toggle(topDrawer);
+                    System.out.println(topDrawer.isOpening());
+                });
+            } catch (InterruptedException e) {
+                System.out.println("Timer Interrupted");
             }
         });
         System.out.println("Thread Starting : " + LocalDateTime.now().getSecond());

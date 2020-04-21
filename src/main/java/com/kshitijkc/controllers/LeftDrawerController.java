@@ -1,9 +1,9 @@
 package com.kshitijkc.controllers;
 
+import com.kshitijkc.resources.LeftDrawer;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
@@ -18,6 +18,14 @@ public class LeftDrawerController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        LeftDrawer.Elements.leftDrawerPane = leftDrawerPane;
+        LeftDrawer.Elements.circularImage = circularImage;
+        LeftDrawer.Elements.scrollPane = scrollPane;
+
+        setImage();
+    }
+
+    private void setImage() {
         Image img = new Image("/logo/me.jpg");
         circularImage.setFill(new ImagePattern(img));
     }

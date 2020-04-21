@@ -3,13 +3,8 @@ package com.kshitijkc.controllers;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXDrawersStack;
-import com.kshitijkc.resources.DrawerStack;
 import com.kshitijkc.resources.Main;
 import com.kshitijkc.resources.TopDrawer;
-import javafx.animation.Animation;
-import javafx.animation.FadeTransition;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
@@ -19,18 +14,14 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
-import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
-import static com.kshitijkc.resources.TopDrawer.Element.time;
+import static com.kshitijkc.resources.TopDrawer.*;
+import static com.kshitijkc.resources.TopDrawer.Elements.time;
 import static com.kshitijkc.resources.LeftDrawer.leftDrawer;
-import static com.kshitijkc.resources.TopDrawer.clock;
-import static com.kshitijkc.resources.TopDrawer.topDrawer;
 import static javafx.scene.input.MouseEvent.MOUSE_PRESSED;
 
 public class MainController implements Initializable {
@@ -42,8 +33,8 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Main.indicator = indicator;
-        Main.drawersStack = drawersStack;
+        Main.Elements.indicator = indicator;
+        Main.Elements.drawersStack = drawersStack;
 
         FlowPane content = new FlowPane();
         JFXButton leftButton = new JFXButton(LEFT);
@@ -52,7 +43,6 @@ public class MainController implements Initializable {
         buildLeftDrawer();
         buildTopDrawer();
 
-        DrawerStack.drawersStack = drawersStack;
         drawersStack.setContent(content);
 
         leftButton.addEventHandler(MOUSE_PRESSED, e -> drawersStack.toggle(leftDrawer));
@@ -92,19 +82,6 @@ public class MainController implements Initializable {
     }
 
     public void setTopDrawerEvent(JFXDrawer topDrawer) {
-        clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-            time.setText(LocalDateTime.now().format(formatter));
-        }), new KeyFrame(Duration.seconds(1)));
-        clock.setCycleCount(Animation.INDEFINITE);
-        FadeTransition fadeIn = new FadeTransition(
-                Duration.millis(5000)
-        );
-        fadeIn.setNode(time);
-        fadeIn.setFromValue(0.0);
-        fadeIn.setToValue(1.0);
-        fadeIn.setCycleCount(1);
-        fadeIn.setAutoReverse(false);
         topDrawer.setOnDrawerOpened(event -> {
             System.out.println("HAHAHA Clocking : ");
             clock.play();

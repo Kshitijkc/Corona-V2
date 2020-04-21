@@ -90,16 +90,16 @@ public class MainController implements Initializable {
         });
         topDrawer.setOnDrawerOpened(event -> {
             System.out.println("HAHAHA Clocking : ");
-            clock.play();
             time.setOpacity(0.0);
             time.setVisible(true);
-            fadeIn.playFromStart();
             TopDrawer.resetTimer();
+            clock.play();
+            fadeIn.playFromStart();
         });
         topDrawer.setOnDrawerClosed(event -> {
-            clock.stop();
-            time.setVisible(false);
             System.out.println("StooooooPpPed");
+            time.setVisible(false);
+            clock.stop();
             if(Main.isMouseExited)
                 TopDrawer.setTimer();
         });

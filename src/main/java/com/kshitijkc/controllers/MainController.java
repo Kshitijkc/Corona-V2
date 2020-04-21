@@ -105,7 +105,7 @@ public class MainController implements Initializable {
 
     public void OnMouseEntered(MouseEvent mouseEvent) {
         System.out.println("Mouse Entered");
-        TopDrawer.stopTimer();
+        TopDrawer.resetTimer();
         Main.isMouseExited = false;
     }
 

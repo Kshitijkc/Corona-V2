@@ -47,7 +47,7 @@ public class TopDrawer {
         System.out.println("Thread Started : " + LocalDateTime.now().getSecond());
     }
 
-    public static void stopTimer() {
+    public static void resetTimer() {
         if(TopDrawer.timer != null) {
             if(TopDrawer.timer.isAlive()) {
                 System.out.println("Stopping Thread");

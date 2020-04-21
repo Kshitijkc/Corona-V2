@@ -98,7 +98,7 @@ public class MainController implements Initializable {
             clock.stop();
             time.setVisible(false);
             System.out.println("StooooooPpPed");
-            if(Main.isMouseExited && TopDrawer.timer == null)
+            if(Main.isMouseExited)
                 TopDrawer.setTimer();
         });
     }

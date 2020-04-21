@@ -10,7 +10,6 @@ public class LeftDrawer {
         public static VBox leftDrawerPane = null;
         public static Circle circularImage = null;
         public static ScrollPane scrollPane = null;
+        public static JFXDrawer leftDrawer = null;
     }
-
-    public static JFXDrawer leftDrawer = null;
 }

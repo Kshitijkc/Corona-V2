@@ -20,7 +20,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import static com.kshitijkc.resources.TopDrawer.Elements.time;
-import static com.kshitijkc.resources.LeftDrawer.leftDrawer;
+import static com.kshitijkc.resources.LeftDrawer.Elements.leftDrawer;
 import static com.kshitijkc.resources.TopDrawer.Elements.topDrawer;
 import static com.kshitijkc.resources.TopDrawer.clock;
 import static com.kshitijkc.resources.TopDrawer.fadeIn;

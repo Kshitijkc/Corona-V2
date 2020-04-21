@@ -3,6 +3,7 @@ package com.kshitijkc.controllers;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXDrawersStack;
+import com.kshitijkc.resources.LeftDrawer;
 import com.kshitijkc.resources.Main;
 import com.kshitijkc.resources.TopDrawer;
 import javafx.fxml.FXMLLoader;
@@ -93,6 +94,7 @@ public class MainController implements Initializable {
             time.setOpacity(0.0);
             time.setVisible(true);
             fadeIn.playFromStart();
+            TopDrawer.resetTimer();
         });
         topDrawer.setOnDrawerClosed(event -> {
             clock.stop();
@@ -111,11 +113,8 @@ public class MainController implements Initializable {
 
     public void OnMouseExited(MouseEvent mouseEvent) {
         System.out.println("Mouse Exited");
+        LeftDrawer.closeDrawer();
         TopDrawer.setTimer();
-
-        if(leftDrawer.isOpening() || leftDrawer.isOpened())
-            leftDrawer.close();
-
         Main.isMouseExited = true;
     }
 }

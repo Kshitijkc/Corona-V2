@@ -12,4 +12,9 @@ public class LeftDrawer {
         public static ScrollPane scrollPane = null;
         public static JFXDrawer leftDrawer = null;
     }
+
+    public static void closeDrawer() {
+        if(Elements.leftDrawer.isOpening() || Elements.leftDrawer.isOpened())
+            Elements.leftDrawer.close();
+    }
 }

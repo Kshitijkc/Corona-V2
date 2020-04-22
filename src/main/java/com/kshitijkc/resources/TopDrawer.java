@@ -24,6 +24,7 @@ public class TopDrawer {
     public static long timeOut = 4000;
     public static Timeline clock = null;
     public static FadeTransition fadeIn = null;
+    public static boolean isOpened = false;
 
     public static void setTimer() {
         if(TopDrawer.timer == null && Elements.topDrawer.isClosed()) {

@@ -86,15 +86,19 @@ public class MainController implements Initializable {
 
     public void setTopDrawerEvent(JFXDrawer topDrawer) {
         topDrawer.setOnDrawerOpening(event -> {
-            time.setOpacity(0.0);
+            if(!TopDrawer.isOpened)
+                time.setOpacity(0.0);
         });
         topDrawer.setOnDrawerOpened(event -> {
             System.out.println("HAHAHA Clocking : ");
-            time.setOpacity(0.0);
-            time.setVisible(true);
-            TopDrawer.resetTimer();
-            clock.play();
-            fadeIn.playFromStart();
+            if(!TopDrawer.isOpened) {
+                time.setOpacity(0.0);
+                time.setVisible(true);
+                TopDrawer.resetTimer();
+                clock.play();
+                fadeIn.playFromStart();
+            }
+            TopDrawer.isOpened = true;
         });
         topDrawer.setOnDrawerClosed(event -> {
             System.out.println("StooooooPpPed");
@@ -102,6 +106,7 @@ public class MainController implements Initializable {
             clock.stop();
             if(Main.isMouseExited)
                 TopDrawer.setTimer();
+            TopDrawer.isOpened = false;
         });
     }
 

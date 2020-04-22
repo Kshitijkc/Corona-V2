@@ -35,9 +35,7 @@ public class TopDrawer {
                     System.out.println("Platform Started : " + LocalDateTime.now().getSecond());
                     Platform.runLater(() -> {
                         System.out.println("Platform Run : " + LocalDateTime.now().getSecond());
-                        System.out.println(Elements.topDrawer.isOpened());
                         drawersStack.toggle(Elements.topDrawer);
-                        System.out.println(Elements.topDrawer.isOpening());
                     });
                 } catch (InterruptedException e) {
                     System.out.println("Timer Interrupted");
@@ -54,10 +52,11 @@ public class TopDrawer {
             if(TopDrawer.timer.isAlive()) {
                 System.out.println("Stopping Thread");
                 TopDrawer.timer.stop();
-                System.out.println("Thread Stopped");
             }
-            if(Elements.topDrawer.isOpening())
+            if(Elements.topDrawer.isOpening()) {
+                System.out.println("Closing TopDrawer");
                 Elements.topDrawer.close();
+            }
             System.out.println("Setting Timer to null");
             TopDrawer.timer = null;
         }

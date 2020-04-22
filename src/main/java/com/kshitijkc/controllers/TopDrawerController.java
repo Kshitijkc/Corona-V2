@@ -62,6 +62,6 @@ public class TopDrawerController implements Initializable {
 
     public void onMouseExited(MouseEvent mouseEvent) {
         time.setTextFill(Color.rgb(200, 200, 200));
-        System.out.println("Mouse Exited Drawer");
+        System.out.println("Mouse Exited TopDrawer");
     }
 }

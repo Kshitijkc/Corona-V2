@@ -14,7 +14,9 @@ public class LeftDrawer {
     }
 
     public static void closeDrawer() {
-        if(Elements.leftDrawer.isOpening() || Elements.leftDrawer.isOpened())
+        if(Elements.leftDrawer.isOpening() || Elements.leftDrawer.isOpened()) {
+            System.out.println("Closing LeftDrawer");
             Elements.leftDrawer.close();
+        }
     }
 }

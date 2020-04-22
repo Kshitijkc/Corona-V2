@@ -41,6 +41,7 @@ public class TopDrawer {
                     System.out.println("Timer Interrupted");
                 }
             });
+            TopDrawer.timer.setDaemon(true);
             System.out.println("Thread Starting : " + LocalDateTime.now().getSecond());
             TopDrawer.timer.start();
             System.out.println("Thread Started : " + LocalDateTime.now().getSecond());

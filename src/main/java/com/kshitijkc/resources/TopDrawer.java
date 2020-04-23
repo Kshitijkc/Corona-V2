@@ -1,6 +1,7 @@
 package com.kshitijkc.resources;
 
 import com.jfoenix.controls.JFXDrawer;
+import com.jfoenix.controls.JFXProgressBar;
 import javafx.animation.*;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -21,6 +22,7 @@ public class TopDrawer {
         public static AnchorPane topDrawerSticker = null;
         public static Label time = null;
         public static JFXDrawer topDrawer = null;
+        public static JFXProgressBar timeLine = null;
     }
 
     public static Thread timer = null;
@@ -74,6 +76,7 @@ public class TopDrawer {
     }
 
     public static void setAnimation() {
+        Elements.timeLine.setVisible(false);
         if(clock == null) {
             clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
@@ -135,6 +138,8 @@ public class TopDrawer {
                     isTimeTranslatedUp = true;
                     if(isTimeScaledUp && Main.isMouseExited) {
                         scaleTranslateDown();
+                    } else {
+                        Elements.timeLine.setVisible(true);
                     }
                 }
             });
@@ -168,6 +173,7 @@ public class TopDrawer {
     public static void scaleTranslateDown() {
         if(TopDrawer.isOpened && isTimeScaledUp && isTimeTranslatedUp) {
             System.out.println("Playing scaleTranslateDown");
+            Elements.timeLine.setVisible(false);
             scaleDownTransition.play();
             translateDownTransition.play();
         }

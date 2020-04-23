@@ -1,5 +1,6 @@
 package com.kshitijkc.controllers;
 
+import com.jfoenix.controls.JFXProgressBar;
 import com.kshitijkc.resources.TopDrawer;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
@@ -19,12 +20,14 @@ public class TopDrawerController implements Initializable {
     public StackPane topDrawerPane;
     public AnchorPane topDrawerSticker;
     public Label time;
+    public JFXProgressBar timeLine;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         TopDrawer.Elements.topDrawerPane = topDrawerPane;
         TopDrawer.Elements.topDrawerSticker = topDrawerSticker;
         TopDrawer.Elements.time = time;
+        TopDrawer.Elements.timeLine = timeLine;
 
         TopDrawer.setAnimation();
     }

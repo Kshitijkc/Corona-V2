@@ -10,13 +10,16 @@
    <children>
       <AnchorPane fx:id="topDrawerSticker" prefHeight="100.0" prefWidth="50.0" stylesheets="@../css/drawer-pane.css">
          <StackPane.margin>
-            <Insets bottom="150.0" left="30.0" right="85.0" />
+            <Insets bottom="150.0" left="20.0" right="120.0" />
          </StackPane.margin>
       </AnchorPane>
       <Label fx:id="time" text="14:36" textFill="#BEBEBE">
          <font>
             <Font name="SansSerif Regular" size="41.0" />
          </font>
+         <StackPane.margin>
+            <Insets left="20.0" right="85.0" />
+         </StackPane.margin>
       </Label>
    </children>
 </StackPane>

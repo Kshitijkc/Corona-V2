@@ -174,7 +174,9 @@ public class TopDrawer {
     }
 
     public static void reset() {
-        scaleDownTransition.play();
-        translateDownTransition.play();
+        if(isTimeScaledUp && isTimeTranslatedUp) {
+            scaleDownTransition.play();
+            translateDownTransition.play();
+        }
     }
 }

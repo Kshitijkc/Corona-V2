@@ -6,6 +6,7 @@ import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.Initializable;
+import javafx.scene.Cursor;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -57,6 +58,7 @@ public class TopDrawerController implements Initializable {
     }
 
     public void onMouseEntered(MouseEvent mouseEvent) {
+        TopDrawer.Elements.topDrawerPane.setCursor(Cursor.DEFAULT);
         time.setTextFill(Color.rgb(255, 255, 255));
         TopDrawer.scaleTranslateUp();
     }

@@ -58,10 +58,12 @@ public class TopDrawerController implements Initializable {
 
     public void onMouseEntered(MouseEvent mouseEvent) {
         time.setTextFill(Color.rgb(255, 255, 255));
+        TopDrawer.scaleTranslateUp();
     }
 
     public void onMouseExited(MouseEvent mouseEvent) {
-        time.setTextFill(Color.rgb(200, 200, 200));
         System.out.println("Mouse Exited TopDrawer");
+        TopDrawer.scaleTranslateDown();
+        time.setTextFill(Color.rgb(190, 190, 190));
     }
 }

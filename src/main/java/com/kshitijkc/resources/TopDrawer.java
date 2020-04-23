@@ -2,11 +2,16 @@ package com.kshitijkc.resources;
 
 import com.jfoenix.controls.JFXDrawer;
 import javafx.animation.FadeTransition;
+import javafx.animation.ScaleTransition;
 import javafx.animation.Timeline;
+import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.Label;
+import javafx.util.Duration;
 
 import java.time.LocalDateTime;
 
@@ -25,6 +30,10 @@ public class TopDrawer {
     public static Timeline clock = null;
     public static FadeTransition fadeIn = null;
     public static boolean isOpened = false;
+    public static ScaleTransition scaleUpTransition = null;
+    public static ScaleTransition scaleDownTransition = null;
+    public static TranslateTransition translateUpTransition = null;
+    public static TranslateTransition translateDownTransition = null;
 
     public static void setTimer() {
         if(TopDrawer.timer == null && Elements.topDrawer.isClosed()) {
@@ -61,6 +70,78 @@ public class TopDrawer {
             }
             System.out.println("Setting Timer to null");
             TopDrawer.timer = null;
+        }
+    }
+
+    public static void setAnimation() {
+        if(scaleUpTransition == null) {
+            System.out.println("Setting scaleUpTransition");
+            scaleUpTransition = new ScaleTransition(Duration.millis(250), Elements.time);
+            scaleUpTransition.setByX(0.05);
+            scaleUpTransition.setByY(0.05);
+            scaleUpTransition.setCycleCount(1);
+            scaleUpTransition.setAutoReverse(false);
+        }
+        if(scaleDownTransition == null) {
+            System.out.println("Setting scaleDownTransition");
+            scaleDownTransition = new ScaleTransition(Duration.millis(250), Elements.time);
+            scaleDownTransition.setByX(-0.05);
+            scaleDownTransition.setByY(-0.05);
+            scaleDownTransition.setCycleCount(1);
+            scaleDownTransition.setAutoReverse(false);
+        }
+        if(translateUpTransition == null) {
+            System.out.println("Setting translateUpTransition");
+            translateUpTransition = new TranslateTransition(Duration.millis(500), Elements.time);
+            translateUpTransition.setByY(-10.0);
+            translateUpTransition.setCycleCount(1);
+            translateUpTransition.setAutoReverse(false);
+        }
+        if(translateDownTransition == null) {
+            System.out.println("Setting translateDownTransition");
+            translateDownTransition = new TranslateTransition(Duration.millis(500), Elements.time);
+            translateDownTransition.setByY(10.0);
+            translateDownTransition.setCycleCount(1);
+            translateDownTransition.setAutoReverse(false);
+        }
+    }
+
+    public static void resetAnimation() {
+        if(scaleUpTransition != null) {
+            System.out.println("Stopping scaleUpTransition");
+            scaleUpTransition.stop();
+            scaleUpTransition = null;
+        }
+        if(scaleDownTransition != null) {
+            System.out.println("Stopping scaleDownTransition");
+            scaleDownTransition.stop();
+            scaleDownTransition = null;
+        }
+        if(translateUpTransition != null) {
+            System.out.println("Stopping translateUpTransition");
+            translateUpTransition.stop();
+            translateUpTransition = null;
+        }
+        if(translateDownTransition != null) {
+            System.out.println("Stopping translateDownTransition");
+            translateDownTransition.stop();
+            translateDownTransition = null;
+        }
+    }
+
+    public static void scaleTranslateUp() {
+        if(TopDrawer.isOpened) {
+            System.out.println("Playing scaleTranslateUp");
+            scaleUpTransition.play();
+            translateUpTransition.play();
+        }
+    }
+
+    public static void scaleTranslateDown() {
+        if(TopDrawer.isOpened) {
+            System.out.println("Playing scaleTranslateDown");
+            translateDownTransition.play();
+            scaleDownTransition.play();
         }
     }
 }

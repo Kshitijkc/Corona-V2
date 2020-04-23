@@ -13,7 +13,7 @@
             <Insets bottom="150.0" left="30.0" right="85.0" />
          </StackPane.margin>
       </AnchorPane>
-      <Label fx:id="time" text="14:36" textFill="#c8c8c8">
+      <Label fx:id="time" text="14:36" textFill="#BEBEBE">
          <font>
             <Font name="SansSerif Regular" size="41.0" />
          </font>

@@ -20,9 +20,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import static com.kshitijkc.resources.TopDrawer.Elements.time;
 import static com.kshitijkc.resources.LeftDrawer.Elements.leftDrawer;
-import static com.kshitijkc.resources.TopDrawer.Elements.topDrawer;
+import static com.kshitijkc.resources.TopDrawer.Elements.*;
 import static com.kshitijkc.resources.TopDrawer.clock;
 import static com.kshitijkc.resources.TopDrawer.fadeIn;
 import static javafx.scene.input.MouseEvent.MOUSE_PRESSED;
@@ -86,13 +85,16 @@ public class MainController implements Initializable {
 
     public void setTopDrawerEvent(JFXDrawer topDrawer) {
         topDrawer.setOnDrawerOpening(event -> {
-            if(!TopDrawer.isOpened)
+            if(!TopDrawer.isOpened) {
                 time.setOpacity(0.0);
+                timeLine.setOpacity(0.0);
+            }
         });
         topDrawer.setOnDrawerOpened(event -> {
             System.out.println("topDrawer Opened");
             if(!TopDrawer.isOpened) {
                 time.setOpacity(0.0);
+                timeLine.setOpacity(1.0);
                 time.setVisible(true);
                 TopDrawer.resetTimer();
                 TopDrawer.setAnimation();

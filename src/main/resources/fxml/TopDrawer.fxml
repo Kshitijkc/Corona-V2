@@ -22,9 +22,9 @@
             <Insets left="20.0" right="85.0" />
          </StackPane.margin>
       </Label>
-      <JFXProgressBar fx:id="timeLine">
+      <JFXProgressBar fx:id="timeLine" style="-fx-max-width: 60;">
          <StackPane.margin>
-            <Insets left="30.0" right="155.0" top="40.0" />
+            <Insets right="120.0" top="40.0" />
          </StackPane.margin>
       </JFXProgressBar>
    </children>

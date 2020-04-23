@@ -1,10 +1,7 @@
 package com.kshitijkc.resources;
 
 import com.jfoenix.controls.JFXDrawer;
-import javafx.animation.FadeTransition;
-import javafx.animation.ScaleTransition;
-import javafx.animation.Timeline;
-import javafx.animation.TranslateTransition;
+import javafx.animation.*;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -14,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.util.Duration;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import static com.kshitijkc.resources.Main.Elements.drawersStack;
 
@@ -26,7 +24,7 @@ public class TopDrawer {
     }
 
     public static Thread timer = null;
-    public static long timeOut = 4000;
+    public static long timeOut = 1000;
     public static Timeline clock = null;
     public static FadeTransition fadeIn = null;
     public static boolean isOpened = false;
@@ -76,6 +74,21 @@ public class TopDrawer {
     }
 
     public static void setAnimation() {
+        if(clock == null) {
+            clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+                Elements.time.setText(LocalDateTime.now().format(formatter));
+            }), new KeyFrame(Duration.seconds(1)));
+            clock.setCycleCount(Animation.INDEFINITE);
+        }
+        if(fadeIn == null) {
+            fadeIn = new FadeTransition(Duration.millis(5000));
+            fadeIn.setNode(Elements.time);
+            fadeIn.setFromValue(0.0);
+            fadeIn.setToValue(1.0);
+            fadeIn.setCycleCount(1);
+            fadeIn.setAutoReverse(false);
+        }
         if(scaleUpTransition == null) {
             System.out.println("Setting scaleUpTransition");
             scaleUpTransition = new ScaleTransition(Duration.millis(250), Elements.time);
@@ -144,29 +157,6 @@ public class TopDrawer {
         }
     }
 
-    public static void resetAnimation() {
-        if(scaleUpTransition != null) {
-            System.out.println("Stopping scaleUpTransition");
-            scaleUpTransition.stop();
-            scaleUpTransition = null;
-        }
-        if(scaleDownTransition != null) {
-            System.out.println("Stopping scaleDownTransition");
-            scaleDownTransition.stop();
-            scaleDownTransition = null;
-        }
-        if(translateUpTransition != null) {
-            System.out.println("Stopping translateUpTransition");
-            translateUpTransition.stop();
-            translateUpTransition = null;
-        }
-        if(translateDownTransition != null) {
-            System.out.println("Stopping translateDownTransition");
-            translateDownTransition.stop();
-            translateDownTransition = null;
-        }
-    }
-
     public static void scaleTranslateUp() {
         if(TopDrawer.isOpened && !isTimeScaledUp && !isTimeTranslatedUp) {
             System.out.println("Playing scaleTranslateUp");
@@ -178,6 +168,13 @@ public class TopDrawer {
     public static void scaleTranslateDown() {
         if(TopDrawer.isOpened && isTimeScaledUp && isTimeTranslatedUp) {
             System.out.println("Playing scaleTranslateDown");
+            scaleDownTransition.play();
+            translateDownTransition.play();
+        }
+    }
+
+    public static void reset() {
+        if(isTimeScaledUp && isTimeTranslatedUp) {
             scaleDownTransition.play();
             translateDownTransition.play();
         }

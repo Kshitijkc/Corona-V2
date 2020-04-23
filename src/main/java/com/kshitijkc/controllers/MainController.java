@@ -103,14 +103,12 @@ public class MainController implements Initializable {
         });
         topDrawer.setOnDrawerClosed(event -> {
             System.out.println("topDrawer Closed");
+            TopDrawer.reset();
             time.setVisible(false);
             clock.stop();
             if(Main.isMouseExited)
                 TopDrawer.setTimer();
-            TopDrawer.resetAnimation();
             TopDrawer.isOpened = false;
-            TopDrawer.isTimeTranslatedUp = false;
-            TopDrawer.isTimeScaledUp = false;
         });
     }
 

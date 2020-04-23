@@ -21,8 +21,6 @@ import java.util.ResourceBundle;
 
 import static com.kshitijkc.resources.Main.Elements.drawersStack;
 import static com.kshitijkc.resources.TopDrawer.Elements.topDrawer;
-import static com.kshitijkc.resources.TopDrawer.clock;
-import static com.kshitijkc.resources.TopDrawer.fadeIn;
 
 public class TopDrawerController implements Initializable {
     public StackPane topDrawerPane;
@@ -35,22 +33,7 @@ public class TopDrawerController implements Initializable {
         TopDrawer.Elements.topDrawerSticker = topDrawerSticker;
         TopDrawer.Elements.time = time;
 
-        setAnimation();
-    }
-
-    private void setAnimation() {
-        clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-            time.setText(LocalDateTime.now().format(formatter));
-        }), new KeyFrame(Duration.seconds(1)));
-        clock.setCycleCount(Animation.INDEFINITE);
-
-        fadeIn = new FadeTransition(Duration.millis(5000));
-        fadeIn.setNode(time);
-        fadeIn.setFromValue(0.0);
-        fadeIn.setToValue(1.0);
-        fadeIn.setCycleCount(1);
-        fadeIn.setAutoReverse(false);
+        TopDrawer.setAnimation();
     }
 
     public void onMouseClicked(MouseEvent mouseEvent) {

@@ -34,6 +34,8 @@ public class TopDrawer {
     public static ScaleTransition scaleDownTransition = null;
     public static TranslateTransition translateUpTransition = null;
     public static TranslateTransition translateDownTransition = null;
+    public static boolean isTimeScaledUp = false;
+    public static boolean isTimeTranslatedUp = false;
 
     public static void setTimer() {
         if(TopDrawer.timer == null && Elements.topDrawer.isClosed()) {
@@ -81,6 +83,15 @@ public class TopDrawer {
             scaleUpTransition.setByY(0.05);
             scaleUpTransition.setCycleCount(1);
             scaleUpTransition.setAutoReverse(false);
+            scaleUpTransition.setOnFinished(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    isTimeScaledUp = true;
+                    if(isTimeTranslatedUp && Main.isMouseExited) {
+                        scaleTranslateDown();
+                    }
+                }
+            });
         }
         if(scaleDownTransition == null) {
             System.out.println("Setting scaleDownTransition");
@@ -89,6 +100,15 @@ public class TopDrawer {
             scaleDownTransition.setByY(-0.05);
             scaleDownTransition.setCycleCount(1);
             scaleDownTransition.setAutoReverse(false);
+            scaleDownTransition.setOnFinished(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    isTimeScaledUp = false;
+                    if(!isTimeTranslatedUp && !Main.isMouseExited) {
+                        scaleTranslateUp();
+                    }
+                }
+            });
         }
         if(translateUpTransition == null) {
             System.out.println("Setting translateUpTransition");
@@ -96,6 +116,15 @@ public class TopDrawer {
             translateUpTransition.setByY(-10.0);
             translateUpTransition.setCycleCount(1);
             translateUpTransition.setAutoReverse(false);
+            translateUpTransition.setOnFinished(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    isTimeTranslatedUp = true;
+                    if(isTimeScaledUp && Main.isMouseExited) {
+                        scaleTranslateDown();
+                    }
+                }
+            });
         }
         if(translateDownTransition == null) {
             System.out.println("Setting translateDownTransition");
@@ -103,6 +132,15 @@ public class TopDrawer {
             translateDownTransition.setByY(10.0);
             translateDownTransition.setCycleCount(1);
             translateDownTransition.setAutoReverse(false);
+            translateDownTransition.setOnFinished(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    isTimeTranslatedUp = false;
+                    if(!isTimeScaledUp && !Main.isMouseExited) {
+                        scaleTranslateUp();
+                    }
+                }
+            });
         }
     }
 
@@ -130,7 +168,7 @@ public class TopDrawer {
     }
 
     public static void scaleTranslateUp() {
-        if(TopDrawer.isOpened) {
+        if(TopDrawer.isOpened && !isTimeScaledUp && !isTimeTranslatedUp) {
             System.out.println("Playing scaleTranslateUp");
             scaleUpTransition.play();
             translateUpTransition.play();
@@ -138,10 +176,10 @@ public class TopDrawer {
     }
 
     public static void scaleTranslateDown() {
-        if(TopDrawer.isOpened) {
+        if(TopDrawer.isOpened && isTimeScaledUp && isTimeTranslatedUp) {
             System.out.println("Playing scaleTranslateDown");
-            translateDownTransition.play();
             scaleDownTransition.play();
+            translateDownTransition.play();
         }
     }
 }

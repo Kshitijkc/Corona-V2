@@ -109,6 +109,8 @@ public class MainController implements Initializable {
                 TopDrawer.setTimer();
             TopDrawer.resetAnimation();
             TopDrawer.isOpened = false;
+            TopDrawer.isTimeTranslatedUp = false;
+            TopDrawer.isTimeScaledUp = false;
         });
     }
 

@@ -107,6 +107,7 @@ public class MainController implements Initializable {
             System.out.println("topDrawer Closed");
             TopDrawer.reset();
             time.setVisible(false);
+            timeLine.setOpacity(0.0);
             clock.stop();
             if(Main.isMouseExited)
                 TopDrawer.setTimer();

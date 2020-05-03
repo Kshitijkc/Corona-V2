@@ -4,7 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXDrawersStack;
 import com.kshitijkc.resources.LeftDrawer;
-import com.kshitijkc.resources.Main;
+import com.kshitijkc.resources.Dashboard;
 import com.kshitijkc.resources.TopDrawer;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -26,7 +26,7 @@ import static com.kshitijkc.resources.TopDrawer.clock;
 import static com.kshitijkc.resources.TopDrawer.fadeIn;
 import static javafx.scene.input.MouseEvent.MOUSE_PRESSED;
 
-public class MainController implements Initializable {
+public class DashboardController implements Initializable {
     public GridPane indicator;
     public JFXDrawersStack drawersStack;
 
@@ -35,8 +35,8 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Main.Elements.indicator = indicator;
-        Main.Elements.drawersStack = drawersStack;
+        Dashboard.Elements.indicator = indicator;
+        Dashboard.Elements.drawersStack = drawersStack;
 
         FlowPane content = new FlowPane();
         JFXButton leftButton = new JFXButton(LEFT);
@@ -60,8 +60,8 @@ public class MainController implements Initializable {
         }
         leftDrawer.setSidePane(leftDrawerPane);
         leftDrawer.setDefaultDrawerSize(Screen.getPrimary().getVisualBounds().getWidth() * (100.0 / 1366.0));
-        leftDrawer.setResizeContent(true); // cool trick to move the main content to sideways when opening
-        leftDrawer.setOverLayVisible(true); // enables drawer to close when clicked in main area when opened
+        leftDrawer.setResizeContent(true); // cool trick to move the dashboard's main content to sideways when opening
+        leftDrawer.setOverLayVisible(true); // enables drawer to close when clicked in dashboard's main area when opened
         leftDrawer.setId(LEFT);
     }
 
@@ -78,8 +78,8 @@ public class MainController implements Initializable {
         topDrawer.setSidePane(topDrawerPane);
         topDrawer.setDirection(JFXDrawer.DrawerDirection.TOP); // sets the drawer to open from top
         topDrawer.setDefaultDrawerSize(Screen.getPrimary().getVisualBounds().getHeight() * (425.0 / 768.0));
-        topDrawer.setResizeContent(false); // cool trick to move the main content to sideways when opening
-        topDrawer.setOverLayVisible(true); // enables drawer to close when clicked in main area when opened
+        topDrawer.setResizeContent(false); // cool trick to move the dashboard's main content to sideways when opening
+        topDrawer.setOverLayVisible(true); // enables drawer to close when clicked in dashboard's main area when opened
         topDrawer.setId(TOP);
     }
 
@@ -109,7 +109,7 @@ public class MainController implements Initializable {
             time.setVisible(false);
             timeLine.setOpacity(0.0);
             clock.stop();
-            if(Main.isMouseExited)
+            if(Dashboard.isMouseExited)
                 TopDrawer.setTimer();
             TopDrawer.isOpened = false;
         });
@@ -118,13 +118,13 @@ public class MainController implements Initializable {
     public void OnMouseEntered(MouseEvent mouseEvent) {
         System.out.println("Mouse Entered");
         TopDrawer.resetTimer();
-        Main.isMouseExited = false;
+        Dashboard.isMouseExited = false;
     }
 
     public void OnMouseExited(MouseEvent mouseEvent) {
         System.out.println("Mouse Exited");
         LeftDrawer.closeDrawer();
         TopDrawer.setTimer();
-        Main.isMouseExited = true;
+        Dashboard.isMouseExited = true;
     }
 }

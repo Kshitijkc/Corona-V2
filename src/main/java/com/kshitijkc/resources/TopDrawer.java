@@ -14,7 +14,7 @@ import javafx.util.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import static com.kshitijkc.resources.Main.Elements.drawersStack;
+import static com.kshitijkc.resources.Dashboard.Elements.drawersStack;
 
 public class TopDrawer {
     public static class Elements {
@@ -99,13 +99,10 @@ public class TopDrawer {
             scaleUpTransition.setByY(0.05);
             scaleUpTransition.setCycleCount(1);
             scaleUpTransition.setAutoReverse(false);
-            scaleUpTransition.setOnFinished(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    isTimeScaledUp = true;
-                    if(isTimeTranslatedUp && Main.isMouseExited) {
-                        scaleTranslateDown();
-                    }
+            scaleUpTransition.setOnFinished(event -> {
+                isTimeScaledUp = true;
+                if(isTimeTranslatedUp && Dashboard.isMouseExited) {
+                    scaleTranslateDown();
                 }
             });
         }
@@ -116,13 +113,10 @@ public class TopDrawer {
             scaleDownTransition.setByY(-0.05);
             scaleDownTransition.setCycleCount(1);
             scaleDownTransition.setAutoReverse(false);
-            scaleDownTransition.setOnFinished(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    isTimeScaledUp = false;
-                    if(!isTimeTranslatedUp && !Main.isMouseExited) {
-                        scaleTranslateUp();
-                    }
+            scaleDownTransition.setOnFinished(event -> {
+                isTimeScaledUp = false;
+                if(!isTimeTranslatedUp && !Dashboard.isMouseExited) {
+                    scaleTranslateUp();
                 }
             });
         }
@@ -132,15 +126,12 @@ public class TopDrawer {
             translateUpTransition.setByY(-10.0);
             translateUpTransition.setCycleCount(1);
             translateUpTransition.setAutoReverse(false);
-            translateUpTransition.setOnFinished(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    isTimeTranslatedUp = true;
-                    if(isTimeScaledUp && Main.isMouseExited) {
-                        scaleTranslateDown();
-                    } else {
-                        Elements.timeLine.setVisible(true);
-                    }
+            translateUpTransition.setOnFinished(event -> {
+                isTimeTranslatedUp = true;
+                if(isTimeScaledUp && Dashboard.isMouseExited) {
+                    scaleTranslateDown();
+                } else {
+                    Elements.timeLine.setVisible(true);
                 }
             });
         }
@@ -150,13 +141,10 @@ public class TopDrawer {
             translateDownTransition.setByY(10.0);
             translateDownTransition.setCycleCount(1);
             translateDownTransition.setAutoReverse(false);
-            translateDownTransition.setOnFinished(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    isTimeTranslatedUp = false;
-                    if(!isTimeScaledUp && !Main.isMouseExited) {
-                        scaleTranslateUp();
-                    }
+            translateDownTransition.setOnFinished(event -> {
+                isTimeTranslatedUp = false;
+                if(!isTimeScaledUp && !Dashboard.isMouseExited) {
+                    scaleTranslateUp();
                 }
             });
         }

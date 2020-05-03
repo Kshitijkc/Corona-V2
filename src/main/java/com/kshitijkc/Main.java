@@ -24,7 +24,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         hideTaskbarIcon(primaryStage);
 
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/Main.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/Dashboard.fxml"));
         Scene scene = new Scene(root);
         scene.setFill(Color.TRANSPARENT);
 
@@ -62,34 +62,18 @@ public class Main extends Application {
     }
 
     private void setEvents(Parent root, final Stage stage, final Scene scene) {
-        root.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                xOffset = event.getSceneX();
-                yOffset = event.getSceneY();
-                scene.setCursor(Cursor.CLOSED_HAND);
-            }
+        root.setOnMousePressed(event -> {
+            xOffset = event.getSceneX();
+            yOffset = event.getSceneY();
+            scene.setCursor(Cursor.CLOSED_HAND);
         });
-        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                stage.setX(event.getScreenX() - xOffset);
-                stage.setY(event.getScreenY() - yOffset);
-                scene.setCursor(Cursor.CLOSED_HAND);
-            }
+        root.setOnMouseDragged(event -> {
+            stage.setX(event.getScreenX() - xOffset);
+            stage.setY(event.getScreenY() - yOffset);
+            scene.setCursor(Cursor.CLOSED_HAND);
         });
-        root.setOnMouseReleased(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                scene.setCursor(Cursor.HAND);
-            }
-        });
-        root.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                scene.setCursor(Cursor.HAND);
-            }
-        });
+        root.setOnMouseReleased(event -> scene.setCursor(Cursor.HAND));
+        root.setOnMouseEntered(event -> scene.setCursor(Cursor.HAND));
     }
 
     public static void main(String[] args) {

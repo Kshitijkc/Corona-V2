@@ -13,7 +13,7 @@ import javafx.scene.paint.Color;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import static com.kshitijkc.resources.Main.Elements.drawersStack;
+import static com.kshitijkc.resources.Dashboard.Elements.drawersStack;
 import static com.kshitijkc.resources.TopDrawer.Elements.topDrawer;
 
 public class TopDrawerController implements Initializable {

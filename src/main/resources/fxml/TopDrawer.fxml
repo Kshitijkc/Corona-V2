@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane fx:id="topDrawerPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#onMouseClicked" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" prefHeight="425.0" prefWidth="250.0" stylesheets="@../css/drawer-pane.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kshitijkc.controllers.TopDrawerController">
+<StackPane fx:id="topDrawerPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#onMouseClicked" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" prefHeight="425.0" prefWidth="250.0" stylesheets="@../css/drawerPane.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kshitijkc.controllers.TopDrawerController">
    <children>
-      <AnchorPane fx:id="topDrawerSticker" prefHeight="100.0" prefWidth="50.0" stylesheets="@../css/drawer-pane.css">
+      <AnchorPane fx:id="topDrawerSticker" prefHeight="100.0" prefWidth="50.0" stylesheets="@../css/drawerPane.css">
          <StackPane.margin>
             <Insets bottom="150.0" left="20.0" right="120.0" />
          </StackPane.margin>

@@ -1,4 +1,4 @@
-package com.kshitijkc.resources;
+package com.kshitijkc.components;
 
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXProgressBar;
@@ -12,7 +12,7 @@ import javafx.util.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import static com.kshitijkc.resources.Dashboard.Elements.drawersStack;
+import static com.kshitijkc.components.Dashboard.Elements.drawersStack;
 
 public class TopDrawer {
     public static class Elements {

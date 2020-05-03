@@ -1,4 +1,4 @@
-package com.kshitijkc.resources;
+package com.kshitijkc.components;
 
 import com.jfoenix.controls.JFXDrawersStack;
 import javafx.scene.layout.GridPane;

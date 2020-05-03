@@ -1,7 +1,7 @@
 package com.kshitijkc.controllers;
 
 import com.jfoenix.controls.JFXProgressBar;
-import com.kshitijkc.resources.TopDrawer;
+import com.kshitijkc.components.TopDrawer;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.control.Label;
@@ -13,8 +13,8 @@ import javafx.scene.paint.Color;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import static com.kshitijkc.resources.Dashboard.Elements.drawersStack;
-import static com.kshitijkc.resources.TopDrawer.Elements.topDrawer;
+import static com.kshitijkc.components.Dashboard.Elements.drawersStack;
+import static com.kshitijkc.components.TopDrawer.Elements.topDrawer;
 
 public class TopDrawerController implements Initializable {
     public StackPane topDrawerPane;

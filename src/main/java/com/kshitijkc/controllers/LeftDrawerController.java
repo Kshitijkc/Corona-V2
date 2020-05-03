@@ -1,6 +1,6 @@
 package com.kshitijkc.controllers;
 
-import com.kshitijkc.resources.LeftDrawer;
+import com.kshitijkc.components.LeftDrawer;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;

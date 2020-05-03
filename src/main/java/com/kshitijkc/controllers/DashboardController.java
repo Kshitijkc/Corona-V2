@@ -3,9 +3,9 @@ package com.kshitijkc.controllers;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXDrawersStack;
-import com.kshitijkc.resources.LeftDrawer;
-import com.kshitijkc.resources.Dashboard;
-import com.kshitijkc.resources.TopDrawer;
+import com.kshitijkc.components.LeftDrawer;
+import com.kshitijkc.components.Dashboard;
+import com.kshitijkc.components.TopDrawer;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
@@ -20,10 +20,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import static com.kshitijkc.resources.LeftDrawer.Elements.leftDrawer;
-import static com.kshitijkc.resources.TopDrawer.Elements.*;
-import static com.kshitijkc.resources.TopDrawer.clock;
-import static com.kshitijkc.resources.TopDrawer.fadeIn;
+import static com.kshitijkc.components.LeftDrawer.Elements.leftDrawer;
+import static com.kshitijkc.components.TopDrawer.Elements.*;
+import static com.kshitijkc.components.TopDrawer.clock;
+import static com.kshitijkc.components.TopDrawer.fadeIn;
 import static javafx.scene.input.MouseEvent.MOUSE_PRESSED;
 
 public class DashboardController implements Initializable {

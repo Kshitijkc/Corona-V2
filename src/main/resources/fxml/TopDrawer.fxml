@@ -4,16 +4,31 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
 <StackPane fx:id="topDrawerPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#onMouseClicked" onMouseEntered="#onMouseEntered" onMouseExited="#onMouseExited" prefHeight="425.0" prefWidth="250.0" stylesheets="@../css/drawerPane.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kshitijkc.controllers.TopDrawerController">
    <children>
-      <AnchorPane fx:id="topDrawerSticker" prefHeight="100.0" prefWidth="50.0" stylesheets="@../css/drawerPane.css">
+      <GridPane fx:id="stickerContainer">
          <StackPane.margin>
-            <Insets bottom="150.0" left="20.0" right="120.0" />
+            <Insets />
          </StackPane.margin>
-      </AnchorPane>
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <AnchorPane fx:id="topDrawerSticker" prefHeight="100.0" prefWidth="50.0" stylesheets="@../css/drawerPane.css" />
+         </children>
+         <padding>
+            <Insets bottom="150.0" left="20.0" right="115.0" />
+         </padding>
+      </GridPane>
       <Label fx:id="time" text="14:36" textFill="#BEBEBE">
          <font>
             <Font name="SansSerif Regular" size="41.0" />

@@ -51,14 +51,16 @@ public class Main extends Application {
         stage.initOwner(primaryStage);
         stage.setX(primaryScreenBounds.getWidth() * (1.0 - (250.0 / 1366.0) - (20.0 / 1366.0))); // 1 - 0.18301610541 - 0.01464128843 && 0.01464128843 = 20 / 1366
         stage.setY((primaryScreenBounds.getHeight() * (1.0 - (425.0 / 768.0)))/2.0); // (1 - 0.55338541666) / 2 && set it as the middle of the screen
-        stage.setWidth(primaryScreenBounds.getWidth() * (250.0 / 1366.0)); // 0.18301610541 = 250 / 1366
-        stage.setHeight(primaryScreenBounds.getHeight() * (425.0 / 768.0)); // 0.55338541666 = 425 / 768
+        if(AppConfig.screenIndependence){
+            stage.setWidth(primaryScreenBounds.getWidth() * (250.0 / 1366.0)); // 0.18301610541 = 250 / 1366
+            stage.setHeight(primaryScreenBounds.getHeight() * (425.0 / 768.0)); // 0.55338541666 = 425 / 768
+            AppConfig.currentHeight = stage.getHeight();
+            AppConfig.currentWidth = stage.getWidth();
+        }
         stage.setResizable(false);
         stage.setAlwaysOnTop(true);
         stage.initStyle(StageStyle.TRANSPARENT);
         stage.setTitle("Corona");
-        AppConfig.height = stage.getHeight();
-        AppConfig.width = stage.getWidth();
         return stage;
     }
 

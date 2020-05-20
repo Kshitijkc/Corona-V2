@@ -3,13 +3,11 @@ package com.kshitijkc.controllers;
 import com.kshitijkc.components.AppConfig;
 import com.kshitijkc.components.LeftDrawer;
 import javafx.fxml.Initializable;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
-import javafx.stage.Screen;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -34,8 +32,8 @@ public class LeftDrawerController implements Initializable {
     }
 
     private void setImageSize() {
-        circularImage.setRadius((AppConfig.width * (40.0)) / AppConfig.defaultWidth);
-        System.out.println("Height : " + AppConfig.height + ", Width : " + AppConfig.width);
+        circularImage.setRadius((AppConfig.currentWidth * (40.0)) / AppConfig.defaultWidth);
+        System.out.println("Height : " + AppConfig.currentHeight + ", Width : " + AppConfig.currentWidth);
     }
 
     private void setImage() {

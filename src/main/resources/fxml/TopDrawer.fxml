@@ -29,18 +29,43 @@
             <Insets bottom="150.0" left="20.0" right="115.0" />
          </padding>
       </GridPane>
-      <Label fx:id="time" text="14:36" textFill="#BEBEBE">
-         <font>
-            <Font name="SansSerif Regular" size="41.0" />
-         </font>
+      <GridPane fx:id="timeContainer">
          <StackPane.margin>
-            <Insets left="20.0" right="85.0" />
+            <Insets />
          </StackPane.margin>
-      </Label>
-      <JFXProgressBar fx:id="timeLine" style="-fx-max-width: 60;">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Label fx:id="time" text="14:36" textFill="#BEBEBE">
+               <font>
+                  <Font name="SansSerif Regular" size="41.0" />
+               </font>
+            </Label>
+         </children>
+         <padding>
+            <Insets left="40.0" />
+         </padding>
+      </GridPane>
+      <GridPane fx:id="timelineContainer">
          <StackPane.margin>
-            <Insets right="120.0" top="40.0" />
+            <Insets />
          </StackPane.margin>
-      </JFXProgressBar>
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="3.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <JFXProgressBar fx:id="timeLine" prefWidth="60.0" />
+         </children>
+         <padding>
+            <Insets left="33.0" top="40.0" />
+         </padding>
+      </GridPane>
    </children>
 </StackPane>

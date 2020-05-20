@@ -3,6 +3,7 @@ package com.kshitijkc.controllers;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXDrawersStack;
+import com.kshitijkc.components.AppConfig;
 import com.kshitijkc.components.LeftDrawer;
 import com.kshitijkc.components.Dashboard;
 import com.kshitijkc.components.TopDrawer;
@@ -59,7 +60,8 @@ public class DashboardController implements Initializable {
             e.printStackTrace();
         }
         leftDrawer.setSidePane(leftDrawerPane);
-        leftDrawer.setDefaultDrawerSize(Screen.getPrimary().getVisualBounds().getWidth() * (100.0 / 1366.0));
+        if(AppConfig.screenIndependent)
+            leftDrawer.setDefaultDrawerSize((AppConfig.currentWidth * (100.0)) / AppConfig.defaultWidth);
         leftDrawer.setResizeContent(true); // cool trick to move the dashboard's main content to sideways when opening
         leftDrawer.setOverLayVisible(true); // enables drawer to close when clicked in dashboard's main area when opened
         leftDrawer.setId(LEFT);

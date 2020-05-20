@@ -1,5 +1,6 @@
 package com.kshitijkc;
 
+import com.kshitijkc.components.AppConfig;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
@@ -22,11 +23,11 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         hideTaskbarIcon(primaryStage);
 
+        Stage stage = setStage(primaryStage);
+
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/Dashboard.fxml"));
         Scene scene = new Scene(root);
         scene.setFill(Color.TRANSPARENT);
-
-        Stage stage = setStage(primaryStage);
 
         setEvents(root, stage, scene);
 
@@ -56,6 +57,8 @@ public class Main extends Application {
         stage.setAlwaysOnTop(true);
         stage.initStyle(StageStyle.TRANSPARENT);
         stage.setTitle("Corona");
+        AppConfig.height = stage.getHeight();
+        AppConfig.width = stage.getWidth();
         return stage;
     }
 

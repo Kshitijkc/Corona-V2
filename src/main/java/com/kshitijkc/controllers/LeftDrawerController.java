@@ -1,5 +1,6 @@
 package com.kshitijkc.controllers;
 
+import com.kshitijkc.components.AppConfig;
 import com.kshitijkc.components.LeftDrawer;
 import javafx.fxml.Initializable;
 import javafx.geometry.Rectangle2D;
@@ -33,8 +34,8 @@ public class LeftDrawerController implements Initializable {
     }
 
     private void setImageSize() {
-        Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
-        circularImage.setRadius((primaryScreenBounds.getWidth() * (40.0)) / 1366.0);
+        circularImage.setRadius((AppConfig.width * (40.0)) / AppConfig.defaultWidth);
+        System.out.println("Height : " + AppConfig.height + ", Width : " + AppConfig.width);
     }
 
     private void setImage() {

@@ -60,8 +60,7 @@ public class DashboardController implements Initializable {
             e.printStackTrace();
         }
         leftDrawer.setSidePane(leftDrawerPane);
-        if(AppConfig.screenIndependent)
-            leftDrawer.setDefaultDrawerSize((AppConfig.currentWidth * (100.0)) / AppConfig.defaultWidth);
+        leftDrawer.setDefaultDrawerSize((AppConfig.currentWidth * (100.0)) / AppConfig.defaultWidth);
         leftDrawer.setResizeContent(true); // cool trick to move the dashboard's main content to sideways when opening
         leftDrawer.setOverLayVisible(true); // enables drawer to close when clicked in dashboard's main area when opened
         leftDrawer.setId(LEFT);

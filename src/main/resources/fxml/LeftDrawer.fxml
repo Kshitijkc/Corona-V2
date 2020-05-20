@@ -20,7 +20,7 @@
          <rowConstraints>
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="30.0" prefHeight="270.0" vgrow="SOMETIMES" />
+            <RowConstraints fx:id="scrollPaneContainer" minHeight="30.0" prefHeight="270.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
             <StackPane>
@@ -39,11 +39,24 @@
             </StackPane>
             <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" style="-fx-background: transparent; -fx-background-color: transparent;" vbarPolicy="NEVER" GridPane.rowIndex="2">
                <content>
-                  <VBox maxHeight="1.7976931348623157E308" prefHeight="250.0" prefWidth="100.0">
+                  <VBox fx:id="scrollBox" maxHeight="1.7976931348623157E308" prefHeight="250.0" prefWidth="100.0">
                      <padding>
                         <Insets left="3.0" right="3.0" />
                      </padding>
                      <children>
+                        <JFXButton maxWidth="1.7976931348623157E308" text="Button 1" textFill="#00ffff" />
+                        <JFXButton maxWidth="1.7976931348623157E308" text="Button 2" textFill="#00ffff" />
+                        <JFXButton maxWidth="1.7976931348623157E308" text="Button 3" textFill="#00ffff" />
+                        <JFXButton maxWidth="1.7976931348623157E308" text="Button 4" textFill="#00ffff" />
+                        <JFXButton maxWidth="1.7976931348623157E308" text="Button 5" textFill="#00ffff" />
+                        <JFXButton maxWidth="1.7976931348623157E308" text="Button 1" textFill="#00ffff" />
+                        <JFXButton maxWidth="1.7976931348623157E308" text="Button 1" textFill="#00ffff" />
+                        <JFXButton maxWidth="1.7976931348623157E308" text="Button 1" textFill="#00ffff" />
+                        <JFXButton maxWidth="1.7976931348623157E308" text="Button 1" textFill="#00ffff" />
+                        <JFXButton maxWidth="1.7976931348623157E308" text="Button 1" textFill="#00ffff" />
+                        <JFXButton maxWidth="1.7976931348623157E308" text="Button 1" textFill="#00ffff" />
+                        <JFXButton maxWidth="1.7976931348623157E308" text="Button 1" textFill="#00ffff" />
+                        <JFXButton maxWidth="1.7976931348623157E308" text="Button 1" textFill="#00ffff" />
                         <JFXButton maxWidth="1.7976931348623157E308" text="Button 1" textFill="#00ffff" />
                         <JFXButton maxWidth="1.7976931348623157E308" text="Button 2" textFill="#00ffff" />
                         <JFXButton maxWidth="1.7976931348623157E308" text="Button 3" textFill="#00ffff" />

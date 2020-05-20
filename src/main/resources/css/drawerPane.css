@@ -7,7 +7,7 @@
 }
 
 #topDrawerSticker {
-    -fx-background-color : linear-gradient(to bottom, #000000, #101010 5%);
+    -fx-background-color : linear-gradient(to bottom, #000000, #000000 5%, #101010 20%);
 }
 
 .separator *.line {

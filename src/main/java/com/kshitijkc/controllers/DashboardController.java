@@ -49,6 +49,8 @@ public class DashboardController implements Initializable {
         drawersStack.setContent(content);
 
         leftButton.addEventHandler(MOUSE_PRESSED, e -> drawersStack.toggle(leftDrawer));
+
+        indicator.setPadding(new Insets(0, 0, (AppConfig.currentHeight * (4.0)) / AppConfig.defaultHeight, 0));
     }
 
     private void buildLeftDrawer() {

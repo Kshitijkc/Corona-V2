@@ -28,12 +28,15 @@
                   <Circle fx:id="circularImage" fill="DODGERBLUE" radius="40.0" stroke="#c6c6c6" strokeType="INSIDE" strokeWidth="3.0" />
                </children>
             </StackPane>
-            <StackPane prefHeight="30.0" GridPane.rowIndex="1">
+            <StackPane fx:id="horizontalBarContainer" prefHeight="30.0" GridPane.rowIndex="1">
                <children>
-                  <Separator prefWidth="200.0">
+                  <Separator fx:id="separator" maxWidth="1.7976931348623157E308" prefWidth="200.0">
                      <StackPane.margin>
-                        <Insets left="20.0" right="20.0" />
+                        <Insets />
                      </StackPane.margin>
+                     <padding>
+                        <Insets left="20.0" right="20.0" />
+                     </padding>
                   </Separator>
                </children>
             </StackPane>
@@ -76,8 +79,11 @@
             </ScrollPane>
          </children>
          <VBox.margin>
-            <Insets top="20.0" />
+            <Insets />
          </VBox.margin>
       </GridPane>
    </children>
+   <padding>
+      <Insets top="20.0" />
+   </padding>
 </VBox>

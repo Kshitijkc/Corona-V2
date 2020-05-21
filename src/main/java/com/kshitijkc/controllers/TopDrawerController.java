@@ -1,10 +1,8 @@
 package com.kshitijkc.controllers;
 
 import com.jfoenix.controls.JFXProgressBar;
-import com.kshitijkc.components.AppConfig;
 import com.kshitijkc.components.TopDrawer;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.scene.Cursor;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -12,7 +10,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -35,24 +32,11 @@ public class TopDrawerController implements Initializable {
         TopDrawer.Elements.topDrawerSticker = topDrawerSticker;
         TopDrawer.Elements.time = time;
         TopDrawer.Elements.timeLine = timeLine;
+        TopDrawer.Elements.stickerContainer = stickerContainer;
+        TopDrawer.Elements.timeContainer = timeContainer;
+        TopDrawer.Elements.timelineContainer = timelineContainer;
 
-        TopDrawer.setAnimation();
-        configDrawer();
-    }
-
-    private void configDrawer() {
-        setPane();
-    }
-
-    private void setPane() {
-        stickerContainer.setPadding(new Insets(0, (AppConfig.currentWidth * (115.0)) / AppConfig.defaultWidth, (AppConfig.currentHeight * (150.0)) / AppConfig.defaultHeight, (AppConfig.currentWidth * (20.0)) / AppConfig.defaultWidth));
-        if(AppConfig.currentHeight > 425.0) {
-            timeContainer.setPadding(new Insets(0, 0, 0, (AppConfig.currentWidth * (40.0)) / AppConfig.defaultWidth));
-            time.setFont(new Font("SansSerif Regular", (AppConfig.currentWidth * (41.0)) / AppConfig.defaultWidth));
-            timelineContainer.setPadding(new Insets((AppConfig.currentHeight * (40.0)) / AppConfig.defaultHeight, 0, 0, (AppConfig.currentWidth * (33.0)) / AppConfig.defaultWidth));
-            timeLine.setMaxWidth((AppConfig.currentWidth * (60.0)) / AppConfig.defaultWidth);
-            timeLine.setPrefHeight((AppConfig.currentHeight * (3.0)) / AppConfig.defaultHeight);
-        }
+        TopDrawer.configDrawer();
     }
 
     public void onMouseClicked(MouseEvent mouseEvent) {

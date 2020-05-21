@@ -4,9 +4,12 @@ import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXProgressBar;
 import javafx.animation.*;
 import javafx.application.Platform;
+import javafx.geometry.Insets;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.Label;
+import javafx.scene.text.Font;
 import javafx.util.Duration;
 
 import java.time.LocalDateTime;
@@ -21,6 +24,9 @@ public class TopDrawer {
         public static Label time = null;
         public static JFXDrawer topDrawer = null;
         public static JFXProgressBar timeLine = null;
+        public static GridPane stickerContainer = null;
+        public static GridPane timeContainer = null;
+        public static GridPane timelineContainer = null;
     }
 
     public static Thread timer = null;
@@ -34,6 +40,20 @@ public class TopDrawer {
     public static TranslateTransition translateDownTransition = null;
     public static boolean isTimeScaledUp = false;
     public static boolean isTimeTranslatedUp = false;
+
+    public static void configDrawer() {
+        adjustResolution();
+        setAnimation();
+    }
+
+    private static void adjustResolution() {
+        Elements.stickerContainer.setPadding(new Insets(0, (AppConfig.currentWidth * (115.0)) / AppConfig.defaultWidth, (AppConfig.currentHeight * (150.0)) / AppConfig.defaultHeight, (AppConfig.currentWidth * (20.0)) / AppConfig.defaultWidth));
+        Elements.timeContainer.setPadding(new Insets(0, 0, 0, (AppConfig.currentWidth * (40.0)) / AppConfig.defaultWidth));
+        Elements.time.setFont(new Font("SansSerif Regular", (AppConfig.currentWidth * (41.0)) / AppConfig.defaultWidth));
+        Elements.timelineContainer.setPadding(new Insets((AppConfig.currentHeight * (40.0)) / AppConfig.defaultHeight, 0, 0, (AppConfig.currentWidth * (33.0)) / AppConfig.defaultWidth));
+        Elements.timeLine.setMaxWidth((AppConfig.currentWidth * (60.0)) / AppConfig.defaultWidth);
+        Elements.timeLine.setPrefHeight((AppConfig.currentHeight * (3.0)) / AppConfig.defaultHeight);
+    }
 
     public static void setTimer() {
         if(TopDrawer.timer == null && Elements.topDrawer.isClosed()) {

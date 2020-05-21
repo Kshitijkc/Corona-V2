@@ -1,16 +1,12 @@
 package com.kshitijkc.controllers;
 
-import com.kshitijkc.components.AppConfig;
 import com.kshitijkc.components.LeftDrawer;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Separator;
-import javafx.scene.image.Image;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 
 import java.net.URL;

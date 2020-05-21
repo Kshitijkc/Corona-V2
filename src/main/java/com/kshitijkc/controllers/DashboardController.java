@@ -22,7 +22,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import static com.kshitijkc.components.LeftDrawer.Elements.leftDrawer;
-import static com.kshitijkc.components.TopDrawer.Elements.*;
+import static com.kshitijkc.components.TopDrawer.Elements.topDrawer;
+import static com.kshitijkc.components.TopDrawer.Elements.time;
+import static com.kshitijkc.components.TopDrawer.Elements.timeLine;
 import static com.kshitijkc.components.TopDrawer.clock;
 import static com.kshitijkc.components.TopDrawer.fadeIn;
 import static javafx.scene.input.MouseEvent.MOUSE_PRESSED;
@@ -50,7 +52,7 @@ public class DashboardController implements Initializable {
 
         leftButton.addEventHandler(MOUSE_PRESSED, e -> drawersStack.toggle(leftDrawer));
 
-        indicator.setPadding(new Insets(0, 0, (AppConfig.currentHeight * (4.0)) / AppConfig.defaultHeight, 0));
+        Dashboard.configDrawerStack();
     }
 
     private void buildLeftDrawer() {

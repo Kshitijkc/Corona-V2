@@ -57,6 +57,7 @@ public class Main extends Application {
             AppConfig.currentHeight = stage.getHeight();
             AppConfig.currentWidth = stage.getWidth();
         }
+        System.out.println("Height : " + AppConfig.currentHeight + ", Width : " + AppConfig.currentWidth);
         stage.setResizable(false);
         stage.setAlwaysOnTop(true);
         stage.initStyle(StageStyle.TRANSPARENT);

@@ -30,33 +30,11 @@ public class LeftDrawerController implements Initializable {
         LeftDrawer.Elements.leftDrawerPane = leftDrawerPane;
         LeftDrawer.Elements.circularImage = circularImage;
         LeftDrawer.Elements.scrollPane = scrollPane;
+        LeftDrawer.Elements.scrollBox = scrollBox;
+        LeftDrawer.Elements.scrollPaneContainer = scrollPaneContainer;
+        LeftDrawer.Elements.horizontalBarContainer = horizontalBarContainer;
+        LeftDrawer.Elements.separator = separator;
 
-        configDrawer();
-    }
-
-    private void configDrawer() {
-        setPane();
-        setImageSize();
-        setImage();
-    }
-
-    private void setPane() {
-        leftDrawerPane.setPrefHeight((AppConfig.currentHeight * (450.0)) / AppConfig.defaultHeight);
-        leftDrawerPane.setPadding(new Insets((AppConfig.currentHeight * (20.0)) / AppConfig.defaultHeight,0,0,0));
-        horizontalBarContainer.setPrefHeight((AppConfig.currentHeight * (30.0)) / AppConfig.defaultHeight);
-        separator.setPadding(new Insets(0, (AppConfig.currentWidth * (20.0)) / AppConfig.defaultWidth, 0, (AppConfig.currentWidth * (20.0)) / AppConfig.defaultWidth));
-        scrollBox.setPrefWidth((AppConfig.currentWidth * (100.0)) / AppConfig.defaultWidth);
-        scrollBox.setPrefHeight((AppConfig.currentHeight * (250.0)) / AppConfig.defaultHeight);
-        scrollPaneContainer.setPrefHeight((AppConfig.currentHeight * (270.0)) / AppConfig.defaultHeight);
-    }
-
-    private void setImageSize() {
-        circularImage.setRadius((AppConfig.currentWidth * (40.0)) / AppConfig.defaultWidth);
-        System.out.println("Height : " + AppConfig.currentHeight + ", Width : " + AppConfig.currentWidth);
-    }
-
-    private void setImage() {
-        Image img = new Image("/logo/me.jpg");
-        circularImage.setFill(new ImagePattern(img));
+        LeftDrawer.configDrawer();
     }
 }

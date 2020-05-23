@@ -45,19 +45,19 @@ public class Main extends Application {
     }
 
     private Stage setStage(Stage primaryStage) {
-        Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
-        //set Stage boundaries to visible bounds of the main screen
         Stage stage = new Stage();
         stage.initOwner(primaryStage);
-        stage.setX(primaryScreenBounds.getWidth() * (1.0 - (250.0 / 1366.0) - (20.0 / 1366.0))); // 1 - 0.18301610541 - 0.01464128843 && 0.01464128843 = 20 / 1366
-        stage.setY((primaryScreenBounds.getHeight() * (1.0 - (425.0 / 768.0)))/2.0); // (1 - 0.55338541666) / 2 && set it as the middle of the screen
+        Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
+        //set Stage boundaries to visible bounds of the main screen
         if(AppConfig.isScreenIndependent){
             stage.setWidth(primaryScreenBounds.getWidth() * (250.0 / 1366.0)); // 0.18301610541 = 250 / 1366
             stage.setHeight(primaryScreenBounds.getHeight() * (425.0 / 768.0)); // 0.55338541666 = 425 / 768
-            AppConfig.currentHeight = stage.getHeight();
             AppConfig.currentWidth = stage.getWidth();
+            AppConfig.currentHeight = stage.getHeight();
         }
-        System.out.println("Height : " + AppConfig.currentHeight + ", Width : " + AppConfig.currentWidth);
+        stage.setX(primaryScreenBounds.getWidth() * (1.0 - (250.0 / 1366.0) - (20.0 / 1366.0))); // 1 - 0.18301610541 - 0.01464128843 && 0.01464128843 = 20 / 1366
+        stage.setY((primaryScreenBounds.getHeight() * (1.0 - (425.0 / 768.0)))/2.0); // (1 - 0.55338541666) / 2 && set it as the middle of the screen
+        System.out.println("Width : " + AppConfig.currentWidth + ", Height : " + AppConfig.currentHeight);
         stage.setResizable(false);
         stage.setAlwaysOnTop(true);
         stage.initStyle(StageStyle.TRANSPARENT);

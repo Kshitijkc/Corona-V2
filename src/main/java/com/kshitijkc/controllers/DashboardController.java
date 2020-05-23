@@ -15,9 +15,6 @@ public class DashboardController implements Initializable {
     public GridPane indicator;
     public JFXDrawersStack drawersStack;
 
-    private static final String LEFT = "LEFT";
-    private static final String TOP = "TOP";
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Dashboard.Elements.indicator = indicator;

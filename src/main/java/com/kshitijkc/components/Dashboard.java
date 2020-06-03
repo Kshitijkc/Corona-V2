@@ -9,11 +9,11 @@ import javafx.geometry.Insets;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 
 import static com.kshitijkc.components.LeftDrawer.Elements.leftDrawer;
+import static com.kshitijkc.components.LeftDrawer.buildLeftDrawer;
 import static com.kshitijkc.components.TopDrawer.Elements.topDrawer;
 import static com.kshitijkc.components.TopDrawer.Elements.time;
 import static com.kshitijkc.components.TopDrawer.Elements.timeLine;
@@ -40,21 +40,6 @@ public class Dashboard {
 
     private static void adjustResolution() {
         Elements.indicator.setPadding(new Insets(0, 0, (AppConfig.currentHeight * (4.0)) / AppConfig.defaultHeight, 0));
-    }
-
-    private static void buildLeftDrawer(DashboardController dashboardController) {
-        leftDrawer = new JFXDrawer();
-        VBox leftDrawerPane = null;
-        try {
-            leftDrawerPane = FXMLLoader.load(dashboardController.getClass().getResource("/fxml/LeftDrawer.fxml"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        leftDrawer.setSidePane(leftDrawerPane);
-        leftDrawer.setDefaultDrawerSize((AppConfig.currentWidth * (100.0)) / AppConfig.defaultWidth);
-        leftDrawer.setResizeContent(true); // cool trick to move the dashboard's main content to sideways when opening
-        leftDrawer.setOverLayVisible(true); // enables drawer to close when clicked in dashboard's main area when opened
-        leftDrawer.setId(LEFT);
     }
 
     private static void buildTopDrawer(DashboardController dashboardController) {

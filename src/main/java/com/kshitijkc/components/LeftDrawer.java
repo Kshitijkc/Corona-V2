@@ -1,6 +1,8 @@
 package com.kshitijkc.components;
 
 import com.jfoenix.controls.JFXDrawer;
+import com.kshitijkc.controllers.DashboardController;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Separator;
@@ -10,6 +12,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+
+import java.io.IOException;
 
 public class LeftDrawer {
     public static class Elements {
@@ -21,6 +25,23 @@ public class LeftDrawer {
         public static RowConstraints scrollPaneContainer = null;
         public static StackPane horizontalBarContainer = null;
         public static Separator separator = null;
+    }
+
+    private static final String LEFT = "LEFT";
+
+    public static void buildLeftDrawer(DashboardController dashboardController) {
+        Elements.leftDrawer = new JFXDrawer();
+        VBox leftDrawerPane = null;
+        try {
+            leftDrawerPane = FXMLLoader.load(dashboardController.getClass().getResource("/fxml/LeftDrawer.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Elements.leftDrawer.setSidePane(leftDrawerPane);
+        Elements.leftDrawer.setDefaultDrawerSize((AppConfig.currentWidth * (100.0)) / AppConfig.defaultWidth);
+        Elements.leftDrawer.setResizeContent(true); // cool trick to move the dashboard's main content to sideways when opening
+        Elements.leftDrawer.setOverLayVisible(true); // enables drawer to close when clicked in dashboard's main area when opened
+        Elements.leftDrawer.setId(LEFT);
     }
 
     public static void closeDrawer() {

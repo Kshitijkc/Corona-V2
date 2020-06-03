@@ -2,8 +2,10 @@ package com.kshitijkc.components;
 
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXProgressBar;
+import com.kshitijkc.controllers.DashboardController;
 import javafx.animation.*;
 import javafx.application.Platform;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
@@ -12,10 +14,12 @@ import javafx.scene.control.Label;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import static com.kshitijkc.components.Dashboard.Elements.drawersStack;
+import static com.kshitijkc.components.TopDrawer.Elements.*;
 
 public class TopDrawer {
     public static class Elements {
@@ -40,6 +44,57 @@ public class TopDrawer {
     public static TranslateTransition translateDownTransition = null;
     public static boolean isTimeScaledUp = false;
     public static boolean isTimeTranslatedUp = false;
+    private static final String TOP = "TOP";
+
+    public static void buildTopDrawer(DashboardController dashboardController) {
+        topDrawer = new JFXDrawer();
+        StackPane topDrawerPane = null;
+        try {
+            topDrawerPane = FXMLLoader.load(dashboardController.getClass().getResource("/fxml/TopDrawer.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        setTopDrawerEvent(topDrawer);
+        topDrawer.setPadding(new Insets(0, 3, 0, 3));
+        topDrawer.setSidePane(topDrawerPane);
+        topDrawer.setDirection(JFXDrawer.DrawerDirection.TOP); // sets the drawer to open from top
+        topDrawer.setDefaultDrawerSize(AppConfig.currentHeight);
+        topDrawer.setResizeContent(false); // cool trick to move the dashboard's main content to sideways when opening
+        topDrawer.setOverLayVisible(true); // enables drawer to close when clicked in dashboard's main area when opened
+        topDrawer.setId(TOP);
+    }
+
+    public static void setTopDrawerEvent(JFXDrawer topDrawer) {
+        topDrawer.setOnDrawerOpening(event -> {
+            if(!TopDrawer.isOpened) {
+                time.setOpacity(0.0);
+                timeLine.setOpacity(0.0);
+            }
+        });
+        topDrawer.setOnDrawerOpened(event -> {
+            System.out.println("topDrawer Opened");
+            if(!TopDrawer.isOpened) {
+                time.setOpacity(0.0);
+                timeLine.setOpacity(1.0);
+                time.setVisible(true);
+                TopDrawer.resetTimer();
+                TopDrawer.setAnimation();
+                clock.play();
+                fadeIn.playFromStart();
+            }
+            TopDrawer.isOpened = true;
+        });
+        topDrawer.setOnDrawerClosed(event -> {
+            System.out.println("topDrawer Closed");
+            TopDrawer.reset();
+            time.setVisible(false);
+            timeLine.setOpacity(0.0);
+            clock.stop();
+            if(Dashboard.isMouseExited)
+                TopDrawer.setTimer();
+            TopDrawer.isOpened = false;
+        });
+    }
 
     public static void configDrawer() {
         adjustResolution();
@@ -55,45 +110,7 @@ public class TopDrawer {
         Elements.timeLine.setPrefHeight((AppConfig.currentHeight * (3.0)) / AppConfig.defaultHeight);
     }
 
-    public static void setTimer() {
-        if(TopDrawer.timer == null && Elements.topDrawer.isClosed()) {
-            TopDrawer.timer = new Thread(() -> {
-                try {
-                    System.out.println("Sleep Started : " + LocalDateTime.now().getSecond());
-                    Thread.sleep(TopDrawer.timeOut);
-                    System.out.println("Sleep Stopped : " + LocalDateTime.now().getSecond());
-                    System.out.println("Platform Started : " + LocalDateTime.now().getSecond());
-                    Platform.runLater(() -> {
-                        System.out.println("Platform Run : " + LocalDateTime.now().getSecond());
-                        drawersStack.toggle(Elements.topDrawer);
-                    });
-                } catch (InterruptedException e) {
-                    System.out.println("Timer Interrupted");
-                }
-            });
-            TopDrawer.timer.setDaemon(true);
-            System.out.println("Thread Starting : " + LocalDateTime.now().getSecond());
-            TopDrawer.timer.start();
-            System.out.println("Thread Started : " + LocalDateTime.now().getSecond());
-        }
-    }
-
-    public static void resetTimer() {
-        if(TopDrawer.timer != null) {
-            if(TopDrawer.timer.isAlive()) {
-                System.out.println("Stopping Thread");
-                TopDrawer.timer.stop();
-            }
-            if(Elements.topDrawer.isOpening()) {
-                System.out.println("Closing TopDrawer");
-                Elements.topDrawer.close();
-            }
-            System.out.println("Setting Timer to null");
-            TopDrawer.timer = null;
-        }
-    }
-
-    public static void setAnimation() {
+    private static void setAnimation() {
         Elements.timeLine.setVisible(false);
         if(clock == null) {
             clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
@@ -165,6 +182,44 @@ public class TopDrawer {
                     scaleTranslateUp();
                 }
             });
+        }
+    }
+
+    public static void setTimer() {
+        if(TopDrawer.timer == null && Elements.topDrawer.isClosed()) {
+            TopDrawer.timer = new Thread(() -> {
+                try {
+                    System.out.println("Sleep Started : " + LocalDateTime.now().getSecond());
+                    Thread.sleep(TopDrawer.timeOut);
+                    System.out.println("Sleep Stopped : " + LocalDateTime.now().getSecond());
+                    System.out.println("Platform Started : " + LocalDateTime.now().getSecond());
+                    Platform.runLater(() -> {
+                        System.out.println("Platform Run : " + LocalDateTime.now().getSecond());
+                        drawersStack.toggle(Elements.topDrawer);
+                    });
+                } catch (InterruptedException e) {
+                    System.out.println("Timer Interrupted");
+                }
+            });
+            TopDrawer.timer.setDaemon(true);
+            System.out.println("Thread Starting : " + LocalDateTime.now().getSecond());
+            TopDrawer.timer.start();
+            System.out.println("Thread Started : " + LocalDateTime.now().getSecond());
+        }
+    }
+
+    public static void resetTimer() {
+        if(TopDrawer.timer != null) {
+            if(TopDrawer.timer.isAlive()) {
+                System.out.println("Stopping Thread");
+                TopDrawer.timer.stop();
+            }
+            if(Elements.topDrawer.isOpening()) {
+                System.out.println("Closing TopDrawer");
+                Elements.topDrawer.close();
+            }
+            System.out.println("Setting Timer to null");
+            TopDrawer.timer = null;
         }
     }
 

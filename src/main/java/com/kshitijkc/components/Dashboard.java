@@ -70,7 +70,7 @@ public class Dashboard {
         topDrawer.setPadding(new Insets(0, 3, 0, 3));
         topDrawer.setSidePane(topDrawerPane);
         topDrawer.setDirection(JFXDrawer.DrawerDirection.TOP); // sets the drawer to open from top
-        topDrawer.setDefaultDrawerSize(Screen.getPrimary().getVisualBounds().getHeight() * (425.0 / 768.0));
+        topDrawer.setDefaultDrawerSize(AppConfig.currentHeight);
         topDrawer.setResizeContent(false); // cool trick to move the dashboard's main content to sideways when opening
         topDrawer.setOverLayVisible(true); // enables drawer to close when clicked in dashboard's main area when opened
         topDrawer.setId(TOP);
